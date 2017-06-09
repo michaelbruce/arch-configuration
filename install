@@ -1,0 +1,26 @@
+#!/bin/bash -e
+
+test_internet_connection() {
+    if ping -c 1 8.8.8.8 >/dev/null; then
+        echo 'Successfully pinged Google DNS, we are connected to the internet!'
+    else
+        echo 'No internet connection available'
+        exit 1
+    fi
+}
+
+sda_has_10gb() {
+    lsblk | grep sda | grep "[1-9][0-9]\+.[0-9]G" >/dev/null
+}
+
+main() {
+    test_internet_connection
+
+    if sda_has_10gb; then
+        echo "install arch"
+    else
+        echo "couldn't find a suitable medium to install"
+    fi
+}
+
+main
