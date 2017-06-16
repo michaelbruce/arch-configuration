@@ -74,14 +74,11 @@ main() {
         create_file_system_table
         chroot_to_new_installation
         install_essential_packages
-        echo 'hoooorayyy'
-        # XXX these commands aren't being invoked after package installation step...
-        # XXX manually running install_bootloader steps will get us a basic arch install..
-        # select_locale
-        # set_localtime_to_gmt
-        # set_hostname
-        # exit
-        # reboot
+        select_locale
+        set_localtime_to_gmt
+        set_hostname
+        exit
+        reboot
     else
         echo "couldn't find a suitable medium to install"
     fi
