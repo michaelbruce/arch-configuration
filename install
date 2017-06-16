@@ -13,11 +13,71 @@ sda_has_10gb() {
     lsblk | grep sda | grep "[1-9][0-9]\+.[0-9]G" >/dev/null
 }
 
+setup_and_mount_disk() {
+    parted --script /dev/sda \
+        mklabel msdos \
+        mkpart primary ext4 1M 100% \
+        set 1 boot on
+    mkfs.ext4 /dev/sda1
+    mount /dev/sda1 /mnt
+}
+
+include_package_manager() {
+    pacstrap -i /mnt base base-devel
+}
+
+create_file_system_table() {
+    genfstab -U /mnt > /mnt/etc/fstab
+}
+
+chroot_to_new_installation() {
+    arch-chroot /mnt /bin/bash
+    echo 'Root should be new operating system'
+}
+
+install_essential_packages() {
+    pacman -S gvim net-tools
+}
+
+select_locale() {
+    cat <<-EOF >> /etc/locale.gen
+    en_US.UTF-8 UTF-8
+    en_GB.UTF-8 UTF-8
+EOF
+    locale-gen
+    echo 'LANG=en_GB.UTF-8' >> /etc/locale.conf
+}
+
+set_localtime_to_gmt() {
+    ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
+    hwclock --systohc --utc
+}
+
+install_bootloader() {
+    pacman -S grub os-prober
+    grub-install --recheck /dev/sda
+    grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+set_hostname() {
+    echo 'archbox' > /etc/hostname
+    sed -i 's/localhost$/archbox/' /etc/hosts
+}
+
 main() {
     test_internet_connection
 
     if sda_has_10gb; then
-        echo "install arch"
+        echo 'Installing Arch Linux...'
+        setup_and_mount_disk
+        include_package_manager
+        create_file_system_table
+        chroot_to_new_installation
+        install_essential_packages
+        select_locale
+        set_localtime_to_gmt
+        set_hostname
+        reboot
     else
         echo "couldn't find a suitable medium to install"
     fi
