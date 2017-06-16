@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 test_internet_connection() {
     if ping -c 1 8.8.8.8 >/dev/null; then
@@ -23,7 +23,20 @@ setup_and_mount_disk() {
 }
 
 include_package_manager() {
-    pacstrap -i /mnt base base-devel --noconfirm
+    # join_by() { local IFS="$1"; shift; echo "$*"; }
+
+    # packages=(
+    # ~/tools/bin
+    # /opt/bin
+    # $HOME/.cargo/bin
+    # /usr/local/bin
+    # /usr/local/share/python
+    # /usr/local/opt/go/libexec/bin
+    # /usr/local/texlive/2016/bin/x86_64-darwin/
+    # )
+
+    # pacstrap -i /mnt $(join_by : "${binary_directories[@]}") --noconfirm
+    pacstrap -i /mnt base --noconfirm
 }
 
 create_file_system_table() {
@@ -74,11 +87,11 @@ main() {
         create_file_system_table
         chroot_to_new_installation
         install_essential_packages
-        select_locale
-        set_localtime_to_gmt
-        set_hostname
-        exit
-        reboot
+        # select_locale
+        # set_localtime_to_gmt
+        # set_hostname
+        # exit
+        # reboot
     else
         echo "couldn't find a suitable medium to install"
     fi
