@@ -23,9 +23,9 @@ setup_and_mount_disk() {
 }
 
 include_package_manager() {
-    set +e
-    pacstrap -i /mnt base base-devel --noconfirm
     set -e
+    pacstrap -i /mnt base base-devel --noconfirm
+    set +e
 }
 
 create_file_system_table() {
