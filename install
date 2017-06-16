@@ -36,7 +36,7 @@ chroot_to_new_installation() {
 }
 
 install_essential_packages() {
-    pacman -S gvim net-tools
+    pacman --noconfirm -S gvim net-tools
 }
 
 select_locale() {
@@ -54,7 +54,7 @@ set_localtime_to_gmt() {
 }
 
 install_bootloader() {
-    pacman -S grub os-prober
+    pacman --noconfirm -S grub os-prober
     grub-install --recheck /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
 }
@@ -77,6 +77,7 @@ main() {
         select_locale
         set_localtime_to_gmt
         set_hostname
+        exit
         reboot
     else
         echo "couldn't find a suitable medium to install"

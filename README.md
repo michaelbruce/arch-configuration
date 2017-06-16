@@ -6,6 +6,5 @@ A set of files that install and configure arch linux
 
 - Launch the Arch Linux boot iso via USB/CD/DVD
 - Connect to the internet
-- `sudo pacman -Syu git`
-- git this repository
+- Download this repository as a tarball `wget https://github.com/michaelbruce/arch-configuration/tarball/master -O - | tar xz`
 - run the `./install` script
