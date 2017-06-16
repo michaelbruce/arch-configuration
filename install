@@ -23,7 +23,7 @@ setup_and_mount_disk() {
 }
 
 include_package_manager() {
-    pacstrap -i /mnt base base-devel
+    pacstrap -i /mnt base base-devel --noconfirm
 }
 
 create_file_system_table() {
@@ -36,7 +36,7 @@ chroot_to_new_installation() {
 }
 
 install_essential_packages() {
-    pacman --noconfirm -S gvim net-tools
+    pacman -S gvim net-tools
 }
 
 select_locale() {
@@ -54,7 +54,7 @@ set_localtime_to_gmt() {
 }
 
 install_bootloader() {
-    pacman --noconfirm -S grub os-prober
+    pacman -S grub os-prober
     grub-install --recheck /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
 }
