@@ -83,7 +83,7 @@ main() {
     if sda_has_10gb; then
         echo 'Installing Arch Linux...'
         setup_and_mount_disk
-        include_package_manager
+        # include_package_manager
         create_file_system_table
         chroot_to_new_installation
         # install_essential_packages
