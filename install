@@ -18,7 +18,7 @@ setup_and_mount_disk() {
         mklabel msdos \
         mkpart primary ext4 1M 100% \
         set 1 boot on
-    mkfs.ext4 /dev/sda1
+    mkfs.ext4 -F /dev/sda1
     mount /dev/sda1 /mnt
 }
 
@@ -86,7 +86,7 @@ main() {
         include_package_manager
         create_file_system_table
         chroot_to_new_installation
-        install_essential_packages
+        # install_essential_packages
         # select_locale
         # set_localtime_to_gmt
         # set_hostname
