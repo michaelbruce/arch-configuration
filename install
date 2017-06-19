@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+BASE=$(pwd)
+
 test_internet_connection() {
     if ping -c 1 8.8.8.8 >/dev/null; then
         echo 'Successfully pinged Google DNS, we are connected to the internet!'
@@ -43,38 +45,10 @@ create_file_system_table() {
     genfstab -U /mnt > /mnt/etc/fstab
 }
 
-chroot_to_new_installation() {
-    arch-chroot /mnt /bin/bash
-    echo 'Root should be new operating system'
-}
-
-install_essential_packages() {
-    pacman -S gvim net-tools
-}
-
-select_locale() {
-    cat <<-EOF >> /etc/locale.gen
-    en_US.UTF-8 UTF-8
-    en_GB.UTF-8 UTF-8
-EOF
-    locale-gen
-    echo 'LANG=en_GB.UTF-8' >> /etc/locale.conf
-}
-
-set_localtime_to_gmt() {
-    ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
-    hwclock --systohc --utc
-}
-
-install_bootloader() {
-    pacman -S grub os-prober
-    grub-install --recheck /dev/sda
-    grub-mkconfig -o /boot/grub/grub.cfg
-}
-
-set_hostname() {
-    echo 'archbox' > /etc/hostname
-    sed -i 's/localhost$/archbox/' /etc/hosts
+start_chrooted_setup() {
+    cp $BASE/chrooted_setup /mnt/chrooted_setup
+    echo 'Setting root directory to /mnt and continuing setup...'
+    arch-chroot /mnt ./chrooted_setup
 }
 
 main() {
@@ -85,13 +59,8 @@ main() {
         setup_and_mount_disk
         include_package_manager
         create_file_system_table
-        chroot_to_new_installation
-        # install_essential_packages
-        # select_locale
-        # set_localtime_to_gmt
-        # set_hostname
-        # exit
-        # reboot
+        start_chrooted_setup
+        reboot
     else
         echo "couldn't find a suitable medium to install"
     fi
