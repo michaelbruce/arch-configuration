@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
 install_essential_packages() {
-    pacman -S gvim net-tools --noconfirm
+    pacman --noconfirm -S gvim net-tools
 }
 
 install_bootloader() {
-    pacman -S grub os-prober
+    pacman --noconfirm -S grub os-prober
     grub-install --recheck /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
 }
