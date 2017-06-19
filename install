@@ -36,7 +36,7 @@ include_package_manager() {
     # )
 
     # pacstrap -i /mnt $(join_by : "${binary_directories[@]}") --noconfirm
-    pacstrap -i /mnt base --noconfirm
+    pacstrap -i /mnt base base-devel --noconfirm || true
 }
 
 create_file_system_table() {
