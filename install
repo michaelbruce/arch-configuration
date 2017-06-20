@@ -37,9 +37,9 @@ copy_user_setup() {
 }
 
 start_chrooted_setup() {
-    cp $BASE/chrooted_setup /mnt/root/chrooted_setup
+    cp $BASE/chrooted_setup /mnt/opt/chrooted_setup
     echo 'Setting root directory to /mnt and continuing setup...'
-    arch-chroot /mnt ./chrooted_setup
+    arch-chroot /mnt ./opt/chrooted_setup
 }
 
 main() {
