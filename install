@@ -25,19 +25,6 @@ setup_and_mount_disk() {
 }
 
 include_package_manager() {
-    # join_by() { local IFS="$1"; shift; echo "$*"; }
-
-    # packages=(
-    # ~/tools/bin
-    # /opt/bin
-    # $HOME/.cargo/bin
-    # /usr/local/bin
-    # /usr/local/share/python
-    # /usr/local/opt/go/libexec/bin
-    # /usr/local/texlive/2016/bin/x86_64-darwin/
-    # )
-
-    # pacstrap -i /mnt $(join_by : "${binary_directories[@]}") --noconfirm
     pacstrap -i /mnt base base-devel --noconfirm
 }
 

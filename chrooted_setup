@@ -1,8 +1,34 @@
 #!/bin/bash -e
 
 install_essential_packages() {
-    pacman --noconfirm -S gvim net-tools
+    join_by() { local IFS="$1"; shift; echo "$*"; }
+
+    packages=(
+    gvim
+    emacs
+    net-tools
+    ttf-inconsolata
+    ruby
+    git
+    xorg
+    fluxbox
+    )
+
+    pacman --no-confirm -S $(join_by : "${binary_directories[@]}")
+
+    git clone https://github.com/michaelbruce/tools $HOME/tools
+    . $HOME/tools/install
 }
+
+# XXX not implemented
+# setup_aursync() {
+# }
+#
+# install_aur_packages() {
+#     packages=(
+#     cloudfoundry-cli
+#     )
+# }
 
 install_bootloader() {
     pacman --noconfirm -S grub os-prober
