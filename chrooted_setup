@@ -14,7 +14,7 @@ install_essential_packages() {
     fluxbox
     )
 
-    pacman --noconfirm -S $(join_by : "${packages[@]}")
+    pacman --noconfirm -S $(join_by ' ' "${packages[@]}")
 
     git clone https://github.com/michaelbruce/tools $HOME/tools
     . $HOME/tools/install
