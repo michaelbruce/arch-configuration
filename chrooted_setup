@@ -17,20 +17,15 @@ install_essential_packages() {
     )
 
     pacman --noconfirm -S $(join_by ' ' "${packages[@]}")
-
-    git clone https://github.com/michaelbruce/tools $HOME/tools
-    . $HOME/tools/install
 }
 
-# XXX not implemented
-# setup_aursync() {
-# }
-#
-# install_aur_packages() {
-#     packages=(
-#     cloudfoundry-cli
-#     )
-# }
+create_user() {
+    useradd -m -G wheel -s /bin/bash hades
+}
+
+start_user_setup() {
+    sudo -u hades ./user_setup
+}
 
 install_bootloader() {
     pacman --noconfirm -S grub os-prober
@@ -60,6 +55,8 @@ EOF
 
 main() {
     install_essential_packages
+    create_user
+    start_user_setup
     select_locale
     set_localtime_to_gmt
     set_hostname
