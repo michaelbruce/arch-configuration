@@ -1,7 +1,5 @@
 #!/bin/bash -e
 
-BASE=$(pwd)
-
 install_essential_packages() {
     join_by() { local IFS="$1"; shift; echo "$*"; }
 

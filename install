@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-BASE=$(pwd)
+export BASE=$(pwd)
 
 test_internet_connection() {
     if ping -c 1 8.8.8.8 >/dev/null; then
