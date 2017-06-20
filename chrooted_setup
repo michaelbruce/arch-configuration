@@ -13,7 +13,11 @@ install_essential_packages() {
     ruby
     git
     xorg
+    xorg-xinit
+    xterm
     fluxbox
+    cmake
+    unzip
     )
 
     pacman --noconfirm -S $(join_by ' ' "${packages[@]}")
