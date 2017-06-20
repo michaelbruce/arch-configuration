@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export BASE=$(pwd)
+BASE=$(pwd)
 
 test_internet_connection() {
     if ping -c 1 8.8.8.8 >/dev/null; then
@@ -32,8 +32,12 @@ create_file_system_table() {
     genfstab -U /mnt > /mnt/etc/fstab
 }
 
+copy_user_setup() {
+    cp $BASE/user_setup /mnt/opt/user_setup
+}
+
 start_chrooted_setup() {
-    cp $BASE/chrooted_setup /mnt/chrooted_setup
+    cp $BASE/chrooted_setup /mnt/root/chrooted_setup
     echo 'Setting root directory to /mnt and continuing setup...'
     arch-chroot /mnt ./chrooted_setup
 }
@@ -46,6 +50,7 @@ main() {
         setup_and_mount_disk
         include_package_manager
         create_file_system_table
+        copy_user_setup
         start_chrooted_setup
         reboot
     else
