@@ -8,6 +8,7 @@ install_essential_packages() {
     emacs
     net-tools
     wget
+    jdk8-openjdk
     ttf-inconsolata
     ruby
     git
