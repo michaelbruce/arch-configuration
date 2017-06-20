@@ -24,6 +24,7 @@ create_user() {
 }
 
 start_user_setup() {
+    cp $BASE/user_setup /home/hades/user_setup
     sudo -u hades ./user_setup
 }
 
