@@ -12,7 +12,7 @@ test_internet_connection() {
 }
 
 sda_has_10gb() {
-    lsblk | grep sda | grep "[1-9][0-9]\+.[0-9]G" >/dev/null
+    lsblk | grep sda | grep "[1-9][0-9]\+(.[0-9])\+G" >/dev/null
 }
 
 setup_and_mount_disk() {
