@@ -29,6 +29,10 @@ create_user() {
     useradd -m -G wheel -s /bin/bash hades
 }
 
+grant_sudo_to_wheel_group() {
+    echo "%wheel ALL=(ALL) ALL" | (EDITOR="tee -a" visudo)
+}
+
 start_user_setup() {
     sudo -u hades /opt/user_setup
 }
@@ -62,6 +66,7 @@ EOF
 main() {
     install_essential_packages
     create_user
+    grant_sudo_to_wheel_group
     start_user_setup
     select_locale
     set_localtime_to_gmt
