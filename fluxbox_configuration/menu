@@ -1,0 +1,47 @@
+[begin] (mika)
+[encoding] {UTF-8}
+      [exec] (xterm) {xterm}
+      [exec] (Emacs) {emacs}
+      [exec] (Chrome) {google-chrome-stable}
+      [exec] (Firefox) {firefox}
+      [exec] (Slack) {slack}
+      [exec] (Evince - document reader) {evince}
+      [exec] (Gimp - image editor) {gimp}
+      [exec] (Thunar - window manager) {thunar}
+      [exec]   (Run) {fbrun}
+[submenu] (Games)
+      [exec] (Minecraft) {minecraft}
+      [exec] (League of Legends) {playonlinux --run "League of Legends" %F}
+      [exec] (Sims 3) {wine ~/.wine32/drive_c/Program\ Files/Electronic\ Arts/The\ Sims\ 3/Game/Bin/TS3.exe}
+      [exec] (Skyrim) {wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/steamapps/common/Skyrim/SkyrimLauncher.exe}
+      [exec] (Steam) {steam}
+      [exec] (Windows Steam) {wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe}
+      [exec] (openmw) {fbrun}
+      [exec] (Neverwinter Nights) {fbrun}
+[end]
+[submenu] (Settings)
+      [exec] (Sound) {pavucontrol}
+      [exec] (Graphics) {nvidia-settings}
+      [config] (Configure)
+      [workspaces] (Workspace List)
+[submenu] (Backgrounds)
+      [wallpapers] (~/.fluxbox/backgrounds) {feh --bg-scale}
+      [wallpapers] (/usr/share/fluxbox/backgrounds) {feh --bg-scale}
+      [wallpapers] (~/Pictures/backgrounds) {feh --bg-scale}
+[end]
+[submenu] (Keyboard)
+      [exec] (normal) {setxkbmap us}
+      [exec] (international) {setxkbmap us -variant intl}
+[end]
+[submenu] (Tools)
+      [exec] (Run) {fbrun}
+      [exec] (Regen Menu) {fluxbox-generate_menu}
+[end]
+      [commanddialog] (Fluxbox Command)
+      [reconfig] (Reload config)
+      [restart] (Restart)
+      [separator]
+      [exit] (Exit)
+[end]
+[endencoding]
+[end]

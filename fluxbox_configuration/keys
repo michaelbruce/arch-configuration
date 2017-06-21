@@ -1,0 +1,119 @@
+# Fluxbox bindings config
+# vim: set ft=ruby:
+
+# Aliases
+Mod1 36 :Fullscreen
+Mod4 36 :Fullscreen
+F4 :Exec scrot
+
+# Enable mouse edge resizing
+OnLeftGrip Move1 :StartResizing bottomleft
+OnRightGrip Move1 :StartResizing bottomright
+
+# click on the desktop to get menus
+OnDesktop Mouse1 :HideMenus
+OnDesktop Mouse2 :WorkspaceMenu
+OnDesktop Mouse3 :RootMenu
+
+# alt + left click to move a window
+OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+OnWindowBorder Move1 :StartMoving
+
+# alt + right click to resize a window
+OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing BottomRight}
+OnWindowBorder Move3 :StartResizing
+
+# double click on the titlebar to shade
+OnTitlebar Double Mouse1 :Shade
+
+# left click on the titlebar to move the window
+OnTitlebar Mouse1 :MacroCmd {Raise} {Focus} {ActivateTab}
+OnTitlebar Move1  :StartMoving
+
+# right click on the titlebar for a menu of options
+OnTitlebar Mouse3 :WindowMenu
+
+# Alt Tab
+Mod1 Tab :NextWindow {groups} (workspace=[current])
+Mod4 Tab :NextWindow {groups} (workspace=[current])
+Mod1 Shift Tab :PrevWindow {groups} (workspace=[current])
+Mod1 g :NextWindow {groups} (workspace=[current])
+
+# Super mappings {{{1
+# Mod4 w :Exec xvkbd -xsendevent -text "\Cw"
+# Mod4 q :Close
+# Mod4 c :Exec xvkbd -xsendevent -text "\Cc"
+# Mod4 a :Exec xvkbd -xsendevent -text "\Ca"
+# Mod4 f :Exec xvkbd -xsendevent -text "\Cf"
+# Mod4 o :Exec xvkbd -xsendevent -text "\Co"
+# Mod4 l :Exec xvkbd -xsendevent -text "\Cl"
+# Mod4 v :Exec xvkbd -xsendevent -text "\Cv"
+# Mod4 z :Exec xvkbd -xsendevent -text "\Cz"
+# Mod4 t :Exec xvkbd -xsendevent -text "\Ct"
+# Mod4 1 :Exec xvkbd -xsendevent -text "\A1"
+# Mod4 2 :Exec xvkbd -xsendevent -text "\A2"
+# Mod4 3 :Exec xvkbd -xsendevent -text "\A3"
+# Mod4 4 :Exec xvkbd -xsendevent -text "\A4"
+# Mod4 5 :Exec xvkbd -xsendevent -text "\A5"
+# Mod4 6 :Exec xvkbd -xsendevent -text "\A6"
+# Mod4 7 :Exec xvkbd -xsendevent -text "\A7"
+# Mod4 8 :Exec xvkbd -xsendevent -text "\A8"
+# Mod4 9 :Exec xvkbd -xsendevent -text "\A9"
+# Mod4 n :Exec xvkbd -xsendevent -text "\Cn"
+# Mod4 j :Exec xvkbd -xsendevent -text "\Cj"
+# Mod4 Left :Exec xvkbd -xsendevent -text "\A\[Left]"
+# Mod4 Right :Exec xvkbd -xsendevent -text "\A\[Right]"
+# Mod4 Mouse1 :Exec xvkbd -xsendevent -text "\C\m1"
+# OnDesktop Mouse1 :HideMenus
+#Mod4 Mouse1 :Exec xvkbd -xsendevent -text "\C\m1"
+
+# go to a specific tab in the current window
+Mod4 1 :Tab 1
+Mod4 2 :Tab 2
+Mod4 3 :Tab 3
+Mod4 4 :Tab 4
+Mod4 5 :Tab 5
+Mod4 6 :Tab 6
+Mod4 7 :Tab 7
+Mod4 8 :Tab 8
+Mod4 9 :Tab 9
+
+# }}}1
+
+F1 :Exec adjust-brightness -50
+F2 :Exec adjust-brightness 50
+F10 :Exec ponymix toggle
+F11 :Exec ponymix decrease 5
+F12 :Exec ponymix increase 5
+
+# toggle transparency
+Mod4 u :ToggleCmd {SetAlpha +30 +30} {SetAlpha -30 -30}
+F6 :ToggleCmd {SetAlpha +30 +30} {SetAlpha -30 -30}
+Mod4 F11 :SetAlpha -30 -30
+Mod4 F12 :SetAlpha +30 +30
+
+# Mod1 space :Exec toggle-xterm
+Mod1 space :Exec toggle-xterm
+Mod1 z :Exec wmctrl-switch-by-application
+Mod1 94 :ShowDesktop
+# Mod4 space :Exec xterm
+# Mod4 n :Exec xterm
+Mod1 Shift n :Exec xterm
+Mod1 Shift p :Exec emacs
+Mod1 Shift r :Restart
+Mod1 Shift b :Exec google-chrome-stable
+Mod1 Shift s :Exec slack
+Mod1 Shift e :Exit
+# F1/F2 binding doesn't work
+# F1 :Exec xbacklight -dec 10
+# F2 :Exec xbacklight -inc 10
+
+# current window commands
+Mod1 F4 :Close
+Mod1 F5 :Kill
+Mod4 m :Minimize
+Mod4 F10 :Maximize
+Mod1 F11 :Fullscreen
+
+# exit fluxbox
+Control Mod1 Delete :Exit
