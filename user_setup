@@ -4,3 +4,9 @@ install_tools() {
     git clone https://github.com/michaelbruce/tools $HOME/tools
     . $HOME/tools/install
 }
+
+main() {
+    install_tools
+}
+
+main
