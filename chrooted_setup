@@ -18,6 +18,8 @@ install_essential_packages() {
     fluxbox
     cmake
     unzip
+    firefox
+    linux-headers
     )
 
     pacman --noconfirm -S $(join_by ' ' "${packages[@]}")
