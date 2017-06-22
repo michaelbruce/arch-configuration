@@ -76,7 +76,17 @@ main() {
         create_file_system_table
         copy_user_setup
         start_chrooted_setup
-        reboot
+        # reboot
+        #     - bootctl install
+        #         - change /mnt/boot/loader/loader.conf
+        #             - timout 3
+        #             - default mikube
+        #             - editor 0
+        #         - create /mnt/boot/loader/entries/mikube.conf
+        #             - title Arch Linux
+        #             - linux /vmlinuz-linux
+        #             - initrc /initramfs-linux.img
+        #             - options root=UUID=<sda2UUID from fstab>
     else
         echo "couldn't find a suitable medium to install"
     fi
