@@ -19,10 +19,19 @@ machine_boots_with_efi() {
     dmesg | grep EFI >/dev/null
 }
 
-setup_and_mount_disk() {
+setup_and_mount_mbr_disk() {
     parted --script /dev/sda \
         mklabel msdos \
         mkpart primary ext4 1M 100% \
+        set 1 boot on
+    mkfs.ext4 -F /dev/sda1
+    mount /dev/sda1 /mnt
+}
+
+setup_and_mount_efi_disk() {
+    parted --script /dev/sda \
+        mklabel gpt \
+        mkpart ESP fat32 1M 513M \
         set 1 boot on
     mkfs.ext4 -F /dev/sda1
     mount /dev/sda1 /mnt
@@ -51,7 +60,13 @@ main() {
 
     if sda_has_10gb; then
         echo 'Installing Arch Linux...'
-        setup_and_mount_disk
+        if machine_boots_with_efi; then
+            export PARTITION_TABLE='efi'
+            setup_and_mount_efi_disk
+        else
+            export PARTITION_TABLE='mbr'
+            setup_and_mount_mbr_disk
+        fi
         include_package_manager
         create_file_system_table
         copy_user_setup

@@ -103,7 +103,10 @@ main() {
     select_locale
     set_localtime_to_gmt
     set_hostname
-    install_bootloader
+    if [ "$PARTITION_TABLE" == "efi" ]; then
+    else
+        install_mbr_bootloader
+    fi
 }
 
 main
