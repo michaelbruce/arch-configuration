@@ -29,8 +29,8 @@ create_user() {
     useradd -m -G wheel -s /bin/bash hades
 }
 
-grant_sudo_to_wheel_group() {
-    echo "%wheel ALL=(ALL) ALL" | (EDITOR="tee -a" visudo)
+grant_nopassword_sudo_to_wheel_group() {
+    echo "%wheel ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 }
 
 start_user_setup() {
@@ -63,10 +63,43 @@ EOF
     echo 'LANG=en_GB.UTF-8' >> /etc/locale.conf
 }
 
+function install_ruby_tools {
+    if [[ ! -e /usr/local/share/chruby/chruby.sh ]]; then
+        wget -O /tmp/chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+        tar -xzvf /tmp/chruby-0.3.9.tar.gz -C /tmp
+        cd /tmp/chruby-0.3.9
+        make install
+        cd -
+    fi
+
+    if [[ ! -e /usr/local/bin/ruby-install ]]; then
+        wget -O ruby-install-0.6.1.tar.gz https://github.com/postmodern/ruby-install/archive/v0.6.1.tar.gz
+        tar -xzvf ruby-install-0.6.1.tar.gz
+        cd ruby-install-0.6.1/
+        make install
+        cd -
+    fi
+}
+
+function install_clojure_tools {
+    if [[ ! -e /usr/local/bin/lein ]]; then
+        wget -O /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+        chmod 755 /usr/local/bin/lein
+    fi
+
+    if [[ ! -e /usr/local/bin/boot ]]; then
+        BOOT_AS_ROOT='yes'
+        bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
+        boot
+    fi
+}
+
 main() {
     install_essential_packages
     create_user
     grant_sudo_to_wheel_group
+    install_ruby_tools
+    install_clojure_tools
     start_user_setup
     select_locale
     set_localtime_to_gmt
