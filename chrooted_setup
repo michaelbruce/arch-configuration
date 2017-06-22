@@ -88,9 +88,8 @@ function install_clojure_tools {
     fi
 
     if [[ ! -e /usr/local/bin/boot ]]; then
-        BOOT_AS_ROOT='yes'
         bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
-        boot
+        BOOT_AS_ROOT='yes' boot
     fi
 }
 
