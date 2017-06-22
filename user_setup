@@ -11,7 +11,7 @@ install_arch_configuration() {
         https://github.com/michaelbruce/arch-configuration \
         $HOME/code/arch-configuration
     [ -L $HOME/.fluxbox ] && unlink $HOME/.fluxbox
-    ln -sfv $HOME/code/arch-configuration/ $HOME/.fluxbox
+    ln -sfv $HOME/code/arch-configuration/fluxbox-configuration $HOME/.fluxbox
 }
 
 main() {
