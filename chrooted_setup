@@ -29,7 +29,7 @@ create_user() {
     useradd -m -G wheel -s /bin/bash hades
 }
 
-grant_nopassword_sudo_to_wheel_group() {
+grant_sudo_to_wheel_group() {
     echo "%wheel ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 }
 
