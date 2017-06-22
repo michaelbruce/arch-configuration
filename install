@@ -32,9 +32,13 @@ setup_and_mount_efi_disk() {
     parted --script /dev/sda \
         mklabel gpt \
         mkpart ESP fat32 1M 513M \
-        set 1 boot on
-    mkfs.ext4 -F /dev/sda1
-    mount /dev/sda1 /mnt
+        set 1 boot on \
+        mkpart hadeshd ext4 513M 100%
+    mkfs.fat -F32 /dev/sda2
+    mkfs.ext4 -F /dev/sda2
+    mount /dev/sda2 /mnt
+    mkdir -p /mnt/boot
+    mount /dev/sda1 /mnt/boot
 }
 
 include_package_manager() {
@@ -61,6 +65,7 @@ main() {
     if sda_has_10gb; then
         echo 'Installing Arch Linux...'
         if machine_boots_with_efi; then
+            echo 'Detected EFI'
             export PARTITION_TABLE='efi'
             setup_and_mount_efi_disk
         else
