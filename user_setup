@@ -5,8 +5,18 @@ install_tools() {
     . $HOME/tools/install
 }
 
+install_arch_configuration() {
+    mkdir -p $HOME/code
+    git clone \
+        https://github.com/michaelbruce/arch-configuration \
+        $HOME/code/arch-configuration
+    [ -L $HOME/.fluxbox ] && unlink $HOME/.fluxbox
+    ln -sfv $HOME/code/arch-configuration/ $HOME/.fluxbox
+}
+
 main() {
     install_tools
+    install_arch_configuration
 }
 
 main
