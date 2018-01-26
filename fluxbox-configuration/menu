@@ -3,7 +3,7 @@
       [exec] (xterm) {xterm}
       [exec] (Emacs) {emacs}
       [exec] (Chrome) {google-chrome-stable}
-      [exec] (Firefox) {firefox}
+      [exec] (Firefox) {firefox-quantum}
       [exec] (Slack) {slack}
       [exec] (Evince - document reader) {evince}
       [exec] (Gimp - image editor) {gimp}

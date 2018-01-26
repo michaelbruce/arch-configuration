@@ -19,7 +19,7 @@ xset s off
 xset s noblank
 
 #exec fluxbox &
-xcompmgr -c & # disabled on the NUC
+compton -b
 
 # And last but not least we start fluxbox.
 # Because it is the last app you have to run it with ''exec'' before it.

@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+fallocate -l 8G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+
+# include in /etc/fstab
+# /swapfile none swap defaults 0 0

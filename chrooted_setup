@@ -1,9 +1,14 @@
 #!/bin/bash -e
 
+enable_multilib_repo() {
+  /etc/pacman.conf
+}
+
 install_essential_packages() {
     join_by() { local IFS="$1"; shift; echo "$*"; }
 
     packages=(
+    mercurial
     gvim
     emacs
     net-tools
@@ -20,8 +25,35 @@ install_essential_packages() {
     unzip
     firefox
     linux-headers
-    xcompmgr
+    compton
+    alsa-utils
+    openssh
+    xclip
+    the_silver_searcher
+    postgresql
+    tmux
+    xdotool
+    xorg-xmessage
+    xf86-video-intel # if intel..
+    gimp
+    htop
+    ponymix
+    scrot # screenshot utility
+    gcc5 # sometimes ruby-install requires pre gcc 7
+    ttf-dejavu # default fonts to avoid square block display
+    npm
+    clisp
+    sbcl
+    chicken # scheme
     )
+    # AUR packages - requires aursyn or similar
+    # git-crypt
+    # git-lfs
+    # heroku-toolbelt
+    # ttf-inconsolata-g
+    # android-sdk-platform-tools
+    # android-ndk
+    # ripgrep
 
     pacman --noconfirm -S $(join_by ' ' "${packages[@]}")
 }

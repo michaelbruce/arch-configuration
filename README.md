@@ -17,3 +17,11 @@ When starting up the freshing installed operating system you should:
 - Set the root password with `passwd`
 - Set the default user password (named hades) with `passwd hades`
 - Use `startx` to boot into fluxbox, a window manager GUI
+
+### Use
+
+pacaur can get packages from AUR
+
+### Arch tips
+
+remove a package and others that depend on them with pacman -Rc

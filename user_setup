@@ -14,9 +14,14 @@ install_arch_configuration() {
     ln -sfv $HOME/code/arch-configuration/fluxbox-configuration $HOME/.fluxbox
 }
 
+disable_psmouse_driver() {
+  ln -s $HOME/arch-configuration/modprobe.conf /etc/modprobe.d/modprobe.conf
+}
+
 main() {
-    install_tools
-    install_arch_configuration
+    # install_tools
+    # install_arch_configuration
+    disable_psmouse_driver
 }
 
 main
