@@ -45,6 +45,7 @@ install_essential_packages() {
     clisp
     sbcl
     chicken # scheme
+    tk # for R development
     )
     # AUR packages - requires aursyn or similar
     # git-crypt
