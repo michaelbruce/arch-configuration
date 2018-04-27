@@ -34,7 +34,7 @@ setup_and_mount_efi_disk() {
         mkpart ESP fat32 1M 513M \
         set 1 boot on \
         mkpart hadeshd ext4 513M 100%
-    mkfs.fat -F32 /dev/sda2
+    mkfs.fat -F32 /dev/sda1
     mkfs.ext4 -F /dev/sda2
     mount /dev/sda2 /mnt
     mkdir -p /mnt/boot

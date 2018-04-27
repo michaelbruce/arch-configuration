@@ -31,15 +31,15 @@ install_essential_packages() {
     xclip
     the_silver_searcher
     postgresql
+    mongodb
     tmux
     xdotool
     xorg-xmessage
-    xf86-video-intel # if intel..
+    xf86-video-intel # if intel.. else nvidia
     gimp
     htop
     ponymix
     scrot # screenshot utility
-    gcc5 # sometimes ruby-install requires pre gcc 7
     ttf-dejavu # default fonts to avoid square block display
     npm
     clisp
