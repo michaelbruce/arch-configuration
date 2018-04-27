@@ -14,7 +14,6 @@ session.screen0.window.unfocus.alpha:	255
 session.screen0.tabs.usePixmap:	false
 session.screen0.tabs.maxOver:	false
 session.screen0.tabs.intitlebar:	true
-session.screen0.menu.alpha:	255
 session.screen0.workspaces:	1
 session.screen0.antialias:	true
 session.screen0.allowRemoteActions:	false
@@ -43,7 +42,8 @@ session.screen0.focusNewWindows:	true
 session.screen0.tabFocusModel:	ClickToTabFocus
 session.screen0.menuDelay:	200
 session.screen0.clickRaises:	true
-session.menu.title.textColor:	white
+session.menu.title.textColor:	#1d1e1a
+session.screen0.menu.alpha:	215
 session.window.font:	sans-12:bold
 session.configVersion:	13
 session.cacheMax:	200
