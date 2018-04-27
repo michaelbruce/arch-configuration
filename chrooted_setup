@@ -16,6 +16,10 @@ install_essential_packages() {
     jdk8-openjdk
     ttf-inconsolata
     ruby
+    ghostscript # for pdf stitching
+    dmidecode # memory profiling with: dmidecode --type memory
+    gcc5 # takes AGES to compile, needed for compiling older ruby versions
+    steam-fonts
     git
     xorg
     xorg-xinit
