@@ -2,8 +2,6 @@
   [Position]	(CENTER)	{0 0}
   [Layer]	{2}
 [end]
-[app] (xterm)
-  [Alpha]	{215 215}
 [end]
 [app] (name!=gimp)
   [Position]	(CENTER)	{0 0}

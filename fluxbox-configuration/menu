@@ -1,7 +1,7 @@
 [begin] (Menu)
 [encoding] {UTF-8}
   [exec] (xterm) {xterm}
-  [exec] (Firefox) {firefox-quantum}
+  [exec] (Firefox) {firefox}
   [exec] (Chrome) {google-chrome-stable}
   [exec] (Evince - document reader) {evince}
   [exec] (Gimp - image editor) {gimp}

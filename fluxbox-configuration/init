@@ -59,7 +59,7 @@ session.doubleClickInterval:	250
 session.forcePseudoTransparency:	false
 session.ignoreBorder:	false
 session.colorsPerChannel:	4
-session.styleFile:	~/.fluxbox/styles/white
+session.styleFile:	~/.fluxbox/styles/bare
 session.keyFile:	~/.fluxbox/keys
 session.menuSearch:	itemstart
 *font:	sans-10:bold
