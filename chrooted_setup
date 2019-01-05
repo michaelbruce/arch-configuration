@@ -8,6 +8,10 @@ install_essential_packages() {
     join_by() { local IFS="$1"; shift; echo "$*"; }
 
     packages=(
+    yubico-pam # allows use of yubikey for authentication
+    image-magick # display <font.ttf>
+    android-tools # for connecting to android phone filesystems
+    rsync
     mercurial
     gvim
     emacs
