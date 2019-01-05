@@ -6,7 +6,7 @@ A set of files that install and configure arch linux
 
 - Launch the Arch Linux boot iso via USB/CD/DVD
 - Connect to the internet
-- Download this repository as a tarball `wget https://github.com/michaelbruce/arch-configuration/tarball/master -O - | tar xz`
+- Download this repository as a tarball `wget https://github.com/mikepjb/arch-configuration/tarball/master -O - | tar xz`
 - run the `./install` script
 
 ### First Boot
