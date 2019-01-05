@@ -6,9 +6,8 @@ enable_multilib_repo() {
   /etc/pacman.conf
 }
 
-# This was causing an issue with my laptop trackpad.
-disable_psmouse_driver() {
-  echo 'blacklist psmouse' > /etc/modprobe.d/modprobe.conf
+vim_as_vi() {
+  ln -s /usr/bin/vim /usr/bin/vi
 }
 
 install_bspwm() {
@@ -157,7 +156,7 @@ main() {
   grant_sudo_to_wheel_group
   install_ruby_tools
   install_clojure_tools
-  disable_psmouse_driver
+  vim_as_vi
   start_user_setup
   select_locale
   set_localtime_to_gmt
