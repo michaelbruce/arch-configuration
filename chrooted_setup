@@ -6,6 +6,11 @@ enable_multilib_repo() {
   /etc/pacman.conf
 }
 
+# This was causing an issue with my laptop trackpad.
+disable_psmouse_driver() {
+  echo 'blacklist psmouse' > /etc/modprobe.d/modprobe.conf
+}
+
 install_bspwm() {
   mkdir -p $HOME/src
   git clone https://github.com/Javyre/bspwm $HOME/src/bspwm
@@ -150,6 +155,7 @@ main() {
   grant_sudo_to_wheel_group
   install_ruby_tools
   install_clojure_tools
+  disable_psmouse_driver
   start_user_setup
   select_locale
   set_localtime_to_gmt

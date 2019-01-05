@@ -21,14 +21,9 @@ install_arch_configuration() {
     ln -sfv $HOME/src/arch-configuration/config $HOME/.config
 }
 
-disable_psmouse_driver() {
-  ln -s $HOME/arch-configuration/modprobe.conf /etc/modprobe.d/modprobe.conf
-}
-
 main() {
-    # install_toolkit
-    # install_arch_configuration
-    disable_psmouse_driver
+  install_toolkit
+  install_arch_configuration
 }
 
 main
