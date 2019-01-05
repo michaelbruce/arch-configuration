@@ -27,6 +27,7 @@ install_essential_packages() {
     packages=(
     yubico-pam # allows use of yubikey for authentication
     android-tools # for connecting to android phone filesystems
+    go
     rsync
     mercurial
     gvim
