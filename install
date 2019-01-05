@@ -2,6 +2,18 @@
 
 BASE=$(pwd)
 
+warn_user() {
+  read -r -p "WARNING: This will wipe your primary hard disk, continue? [y/N] " response
+  case "$response" in
+    [yY][eE][sS]|[yY]) 
+      echo 'Let us begin..'
+    *)
+      echo 'Chicken.'
+      exit 1
+      ;;
+  esac
+}
+
 test_internet_connection() {
     if ping -c 1 8.8.8.8 >/dev/null; then
         echo 'Successfully pinged Google DNS, we are connected to the internet!'
@@ -60,36 +72,37 @@ start_chrooted_setup() {
 }
 
 main() {
-    test_internet_connection
+  test_internet_connection
 
-    if sda_has_10gb; then
-        echo 'Installing Arch Linux...'
-        if machine_boots_with_efi; then
-            echo 'Detected EFI'
-            export PARTITION_TABLE='efi'
-            setup_and_mount_efi_disk
-        else
-            export PARTITION_TABLE='mbr'
-            setup_and_mount_mbr_disk
-        fi
-        include_package_manager
-        create_file_system_table
-        copy_user_setup
-        start_chrooted_setup
-        # reboot
-        #     - bootctl install
-        #         - change /mnt/boot/loader/loader.conf
-        #             - timout 3
-        #             - default mikube
-        #             - editor 0
-        #         - create /mnt/boot/loader/entries/mikube.conf
-        #             - title Arch Linux
-        #             - linux /vmlinuz-linux
-        #             - initrc /initramfs-linux.img
-        #             - options root=UUID=<sda2UUID from fstab>
+  if sda_has_10gb; then
+    warn_user
+    echo 'Installing Arch Linux...'
+    if machine_boots_with_efi; then
+        echo 'Detected EFI'
+        export PARTITION_TABLE='efi'
+        setup_and_mount_efi_disk
     else
-        echo "couldn't find a suitable medium to install"
+        export PARTITION_TABLE='mbr'
+        setup_and_mount_mbr_disk
     fi
+    include_package_manager
+    create_file_system_table
+    copy_user_setup
+    start_chrooted_setup
+    # reboot
+    #     - bootctl install
+    #         - change /mnt/boot/loader/loader.conf
+    #             - timout 3
+    #             - default mikube
+    #             - editor 0
+    #         - create /mnt/boot/loader/entries/mikube.conf
+    #             - title Arch Linux
+    #             - linux /vmlinuz-linux
+    #             - initrc /initramfs-linux.img
+    #             - options root=UUID=<sda2UUID from fstab>
+  else
+    echo "couldn't find a suitable medium to install"
+  fi
 }
 
 main
