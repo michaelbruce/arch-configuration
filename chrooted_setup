@@ -1,15 +1,26 @@
 #!/bin/bash -e
 
+# Setup tasks run on the system as root via chroot
+
 enable_multilib_repo() {
   /etc/pacman.conf
+}
+
+install_bspwm() {
+  mkdir -p $HOME/src
+  git clone https://github.com/Javyre/bspwm $HOME/src/bspwm
+  cd $HOME/src/bspwm
+  make && make install
 }
 
 install_essential_packages() {
     join_by() { local IFS="$1"; shift; echo "$*"; }
 
+    # image-magick # display <font.ttf>
+    # gcc5 # takes AGES to compile, needed for compiling older ruby versions
+    # steam-fonts
     packages=(
     yubico-pam # allows use of yubikey for authentication
-    image-magick # display <font.ttf>
     android-tools # for connecting to android phone filesystems
     rsync
     mercurial
@@ -22,18 +33,15 @@ install_essential_packages() {
     ruby
     ghostscript # for pdf stitching
     dmidecode # memory profiling with: dmidecode --type memory
-    gcc5 # takes AGES to compile, needed for compiling older ruby versions
-    steam-fonts
     git
     xorg
     xorg-xinit
     xterm
-    fluxbox
     cmake
     unzip
     firefox
     linux-headers
-    xcompmgr
+    compton
     alsa-utils
     openssh
     xclip
@@ -137,6 +145,7 @@ function install_clojure_tools {
 
 main() {
   install_essential_packages
+  install_bspwm
   create_user
   grant_sudo_to_wheel_group
   install_ruby_tools

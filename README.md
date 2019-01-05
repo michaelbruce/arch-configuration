@@ -16,7 +16,7 @@ When starting up the freshing installed operating system you should:
 - Login as root (no password required yet)
 - Set the root password with `passwd`
 - Set the default user password (named hades) with `passwd hades`
-- Use `startx` to boot into fluxbox, a window manager GUI
+- Use `startx` to boot into bspwm, a window manager GUI
 
 ### Use
 

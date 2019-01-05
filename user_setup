@@ -1,17 +1,24 @@
 #!/bin/bash -e
 
-install_tools() {
-    git clone https://github.com/michaelbruce/tools $HOME/tools
-    . $HOME/tools/install
+install_toolkit() {
+    git clone https://github.com/michaelbruce/toolkit $HOME/toolkit
+    . $HOME/toolkit/install
+}
+
+install_bspwm() {
+    git clone https://github.com/Javyre/bspwm $HOME/src/bspwm
+    cd !$
+    make && make install
 }
 
 install_arch_configuration() {
-    mkdir -p $HOME/code
+    mkdir -p $HOME/src
     git clone \
         https://github.com/michaelbruce/arch-configuration \
-        $HOME/code/arch-configuration
-    [ -L $HOME/.fluxbox ] && unlink $HOME/.fluxbox
-    ln -sfv $HOME/code/arch-configuration/fluxbox-configuration $HOME/.fluxbox
+        $HOME/src/arch-configuration
+    [ -L $HOME/.config ] && unlink $HOME/.config
+    [ -d $HOME/.config ] && rm $HOME/.config
+    ln -sfv $HOME/src/arch-configuration/config $HOME/.config
 }
 
 disable_psmouse_driver() {
@@ -19,7 +26,7 @@ disable_psmouse_driver() {
 }
 
 main() {
-    # install_tools
+    # install_toolkit
     # install_arch_configuration
     disable_psmouse_driver
 }
