@@ -93,7 +93,7 @@ start_user_setup() {
     sudo -u hades /opt/user_setup
 }
 
-install_bootloader() {
+install_mbr_bootloader() {
     pacman --noconfirm -S grub os-prober
     grub-install --recheck /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
