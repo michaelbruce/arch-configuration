@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 install_toolkit() {
-    git clone https://github.com/michaelbruce/toolkit $HOME/toolkit
+    git clone https://github.com/mikepjb/toolkit $HOME/toolkit
     . $HOME/toolkit/install
 }
 
@@ -14,7 +14,7 @@ install_bspwm() {
 install_arch_configuration() {
     mkdir -p $HOME/src
     git clone \
-        https://github.com/michaelbruce/arch-configuration \
+        https://github.com/mikepjb/arch-configuration \
         $HOME/src/arch-configuration
     [ -L $HOME/.config ] && unlink $HOME/.config
     [ -d $HOME/.config ] && rm $HOME/.config
