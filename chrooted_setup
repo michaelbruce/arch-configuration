@@ -7,6 +7,7 @@ enable_multilib_repo() {
 }
 
 vim_as_vi() {
+  [[ -e /usr/bin/vi ]] && rm /usr/bin/vi
   ln -s /usr/bin/vim /usr/bin/vi
 }
 
