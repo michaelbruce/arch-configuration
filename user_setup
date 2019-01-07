@@ -19,6 +19,8 @@ install_arch_configuration() {
     [ -L $HOME/.config ] && unlink $HOME/.config
     [ -d $HOME/.config ] && rm $HOME/.config
     ln -sfv $HOME/src/arch-configuration/config $HOME/.config
+    mkdir -p ~/Pictures/backgrounds
+    ln -s $HOME/src/arch-configuration/wallpaper.jpg $HOME/Pictures/backgrounds/wallpaper.jpg
 }
 
 main() {
