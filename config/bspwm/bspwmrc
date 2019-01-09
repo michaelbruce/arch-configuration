@@ -3,6 +3,8 @@
 sxhkd &
 compton &
 
+ponymix set-volume 20
+
 feh --bg-fill ~/Pictures/backgrounds/wallpaper.jpg
 
 bspc monitor -d I II III IV V VI VII VIII IX X
