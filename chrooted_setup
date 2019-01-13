@@ -12,10 +12,12 @@ vim_as_vi() {
 }
 
 install_bspwm() {
-  mkdir -p $HOME/src
-  git clone https://github.com/Javyre/bspwm $HOME/src/bspwm
-  cd $HOME/src/bspwm
-  make && make install
+  if ! type "bspwm" > /dev/null; then
+    mkdir -p $HOME/src
+    git clone https://github.com/Javyre/bspwm $HOME/src/bspwm
+    cd $HOME/src/bspwm
+    make && make install
+  fi
 }
 
 install_essential_packages() {
@@ -34,7 +36,7 @@ install_essential_packages() {
     sxhkd
     rsync
     mercurial
-    gvim
+    vim
     emacs
     net-tools
     wget
@@ -82,7 +84,8 @@ install_essential_packages() {
     # android-ndk
     # ripgrep
 
-    pacman --noconfirm -S $(join_by ' ' "${packages[@]}")
+    pacman -Sy
+    pacman --noconfirm --needed -Scc $(join_by ' ' "${packages[@]}")
 }
 
 create_user() {
@@ -90,7 +93,7 @@ create_user() {
 }
 
 grant_sudo_to_wheel_group() {
-    echo "%wheel ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
+    echo "%wheel ALL=(ALL) ALL" | (EDITOR="tee -a" visudo)
 }
 
 start_user_setup() {
@@ -156,20 +159,23 @@ function install_clojure_tools {
 main() {
   install_essential_packages
   install_bspwm
-  create_user
-  grant_sudo_to_wheel_group
-  install_ruby_tools
-  install_clojure_tools
-  vim_as_vi
-  start_user_setup
-  select_locale
-  set_localtime_to_gmt
-  set_hostname
-  if [ "$PARTITION_TABLE" == "efi" ]; then
-    echo 'no bootloader provided for efi, manual step pls.'
-  else
-    install_mbr_bootloader
-  fi
+  # if [[ $1 = 'firsttime' ]];then
+  #   echo ' => firsttime parameter passed; continuing setup'
+  #   # create_user
+  #   # grant_sudo_to_wheel_group
+  #   # install_ruby_tools
+  #   # install_clojure_tools
+  #   # vim_as_vi
+  #   # start_user_setup
+  #   # select_locale
+  #   # set_localtime_to_gmt
+  #   # set_hostname
+  #   # if [ "$PARTITION_TABLE" == "efi" ]; then
+  #   #   echo 'no bootloader provided for efi, manual step pls.'
+  #   # else
+  #   #   install_mbr_bootloader
+  #   # fi
+  # fi
 }
 
 main
