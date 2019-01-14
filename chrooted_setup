@@ -30,6 +30,13 @@ install_essential_packages() {
     yubico-pam # allows use of yubikey for authentication
     android-tools # for connecting to android phone filesystems
     dmenu # lightweight spotlight
+    pavucontrol
+    aws-cli
+    docker
+    docker-compose
+    peek
+    evince
+    visualvm
     go
     ripgrep
     feh
@@ -74,22 +81,35 @@ install_essential_packages() {
     sbcl
     chicken # scheme
     tk # for R development
+    bluez
+    bluez-utils
+    jq
     )
-    # AUR packages - requires aursyn or similar
-    # git-crypt
-    # git-lfs
-    # heroku-toolbelt
-    # ttf-inconsolata-g
-    # android-sdk-platform-tools
-    # android-ndk
-    # ripgrep
 
     pacman -Sy
-    pacman --noconfirm --needed -Scc $(join_by ' ' "${packages[@]}")
+    pacman -Scc --noconfirm
+    pacman --noconfirm --needed -S $(join_by ' ' "${packages[@]}")
+}
+
+install_pacaur_and_extra_packages() {
+  if ! type "pacaur" > /dev/null; then
+    /opt/pacaur_install.sh
+  fi
+
+  packages=(
+  git-crypt
+  git-lfs
+  google-chrome
+  ttf-inconsolata-g
+  ttf-ms-fonts
+  ripgrep
+  )
+
+  pacaur --noconfirm --needed -Scc $(join_by ' ' "${packages[@]}")
 }
 
 create_user() {
-    useradd -m -G wheel -s /bin/bash hades
+    useradd -m -G wheel,docker -s /bin/bash hades
 }
 
 grant_sudo_to_wheel_group() {
@@ -158,6 +178,7 @@ function install_clojure_tools {
 
 main() {
   install_essential_packages
+  install_pacaur_and_extra_packages
   install_bspwm
   # if [[ $1 = 'firsttime' ]];then
   #   echo ' => firsttime parameter passed; continuing setup'
