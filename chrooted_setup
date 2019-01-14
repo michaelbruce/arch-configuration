@@ -86,6 +86,8 @@ install_essential_packages() {
     jq
     )
 
+    # pacman -Fy # downloads database files, allows:
+    # pacman -Fs file # discover which package a file belongs to.
     pacman -Sy
     pacman -Scc --noconfirm
     pacman --noconfirm --needed -S $(join_by ' ' "${packages[@]}")
