@@ -36,6 +36,7 @@ install_essential_packages() {
     aws-cli
     docker
     docker-compose
+    slock
     peek
     evince
     visualvm
