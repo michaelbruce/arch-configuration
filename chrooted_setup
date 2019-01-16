@@ -33,6 +33,7 @@ install_essential_packages() {
     pavucontrol
     tree
     tig
+    thunar
     dialog # required for using wifi-menu
     aws-cli
     docker
