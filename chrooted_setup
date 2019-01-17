@@ -110,6 +110,7 @@ install_pacaur_and_extra_packages() {
   ttf-inconsolata-g
   ttf-ms-fonts
   ripgrep
+  xcalib
   )
 
   pacaur --noconfirm --needed -Scc $(join_by ' ' "${packages[@]}")
