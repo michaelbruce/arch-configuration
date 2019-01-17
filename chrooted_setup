@@ -31,7 +31,6 @@ install_essential_packages() {
     android-tools # for connecting to android phone filesystems
     dmenu # lightweight spotlight
     pavucontrol
-    xbindkeys
     tree
     tig
     thunar
