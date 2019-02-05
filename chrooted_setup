@@ -31,6 +31,7 @@ install_essential_packages() {
     android-tools # for connecting to android phone filesystems
     dmenu # lightweight spotlight
     pavucontrol
+    fzf
     rlwrap
     clojure
     tree
@@ -55,6 +56,7 @@ install_essential_packages() {
     net-tools
     wget
     jdk8-openjdk
+    openjdk8-src
     ttf-inconsolata
     ruby
     ghostscript # for pdf stitching
