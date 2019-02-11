@@ -9,6 +9,8 @@ shift + alt + n
 shift + alt + b
 	firefox
 
+shift + alt + c
+	emacs
 
 # program launcher
 super + @space
