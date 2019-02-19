@@ -9,6 +9,11 @@ shift + alt + n
 shift + alt + b
 	firefox
 
+shift + alt + c
+	emacs
+
+shift + alt + m
+	visualvm 
 
 # program launcher
 super + @space
