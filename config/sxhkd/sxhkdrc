@@ -15,6 +15,9 @@ shift + alt + c
 shift + alt + m
 	visualvm 
 
+shift + alt + s
+  slock
+
 # program launcher
 super + @space
 	dmenu_run
