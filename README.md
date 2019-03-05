@@ -28,3 +28,5 @@ remove a package and others that depend on them with pacman -Rc
 ### Apple Magic mouse
 
 echo 'modprobe hid_magicmouse scroll_acceleration=1 scroll_speed=55' > /etc/modprobe.d/hid_magicmouse.conf
+
+### TODO: enable ssh-agent service by default...

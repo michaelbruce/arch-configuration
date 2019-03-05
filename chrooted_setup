@@ -192,6 +192,7 @@ main() {
   install_essential_packages
   install_pacaur_and_extra_packages
   install_bspwm
+  systemctl --user enable ssh-agent.service
   # if [[ $1 = 'firsttime' ]];then
   #   echo ' => firsttime parameter passed; continuing setup'
   #   # create_user
