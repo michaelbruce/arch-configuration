@@ -59,6 +59,7 @@ install_essential_packages() {
     openjdk8-src
     ttf-inconsolata
     ruby
+    ntp # keeps time synced
     ghostscript # for pdf stitching
     dmidecode # memory profiling with: dmidecode --type memory
     git
@@ -193,6 +194,7 @@ main() {
   install_pacaur_and_extra_packages
   install_bspwm
   systemctl --user enable ssh-agent.service
+  systemctl enable ntpd
   # if [[ $1 = 'firsttime' ]];then
   #   echo ' => firsttime parameter passed; continuing setup'
   #   # create_user
