@@ -2,6 +2,9 @@
 
 # Setup tasks run on the system as root via chroot
 
+cd $(dirname $BASH_SOURCE)
+BASE=$(pwd)
+
 enable_multilib_repo() {
   /etc/pacman.conf
 }
@@ -69,6 +72,7 @@ install_essential_packages() {
     cmake
     unzip
     firefox
+    chromium
     linux-headers
     compton
     alsa-utils
@@ -193,8 +197,9 @@ main() {
   install_essential_packages
   install_pacaur_and_extra_packages
   install_bspwm
-  systemctl --user enable ssh-agent.service
-  systemctl enable ntpd
+  systemctl --user enable ssh-agent
+  systemctl --user enable ntpd
+  ln -sfv $BASE/modprobe.conf /etc/modprobe.d/modprobe.conf
   # if [[ $1 = 'firsttime' ]];then
   #   echo ' => firsttime parameter passed; continuing setup'
   #   # create_user
