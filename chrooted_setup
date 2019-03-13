@@ -116,11 +116,11 @@ install_pacaur_and_extra_packages() {
   packages=(
   git-crypt
   git-lfs
-  google-chrome
   ttf-inconsolata-g
   ttf-ms-fonts
   ripgrep
   xcalib
+  lierolibre # the best worms game.
   )
 
   pacaur --noconfirm --needed -Scc $(join_by ' ' "${packages[@]}")
