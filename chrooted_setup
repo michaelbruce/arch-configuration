@@ -38,6 +38,7 @@ install_essential_packages() {
     fzf
     rlwrap
     clojure
+    ghc # de-facto haskell compiler
     tree
     tig
     thunar
