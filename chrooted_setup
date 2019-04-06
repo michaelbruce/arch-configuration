@@ -33,12 +33,18 @@ install_essential_packages() {
     yubico-pam # allows use of yubikey for authentication
     android-tools # for connecting to android phone filesystems
     dmenu # lightweight spotlight
+    mutt
+    isync
+    msmtp
+    xlock
+    xautolock
     zip
     pavucontrol
     fzf
     rlwrap
     clojure
     ghc # de-facto haskell compiler
+    stack
     tree
     tig
     thunar
@@ -202,6 +208,7 @@ main() {
   systemctl --user enable ssh-agent
   systemctl --user enable ntpd
   ln -sfv $BASE/modprobe.conf /etc/modprobe.d/modprobe.conf
+  ln -sfv $BASE/config/systemd/user/xautolock.service $HOME/.config/systemd/user/xautolock.service
   # if [[ $1 = 'firsttime' ]];then
   #   echo ' => firsttime parameter passed; continuing setup'
   #   # create_user
