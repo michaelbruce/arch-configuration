@@ -30,3 +30,9 @@ remove a package and others that depend on them with pacman -Rc
 echo 'modprobe hid_magicmouse scroll_acceleration=1 scroll_speed=55' > /etc/modprobe.d/hid_magicmouse.conf
 
 ### TODO: enable ssh-agent service by default...
+
+### TODO
+
+ssh-agent will fail to start if ssh socket already exists (or is possibly bound
+to a port that gets taken elsewhere) - either way removing the file before
+starting the service would be great.. maybe we should just /tmp it?
