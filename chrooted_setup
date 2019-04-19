@@ -33,6 +33,7 @@ install_essential_packages() {
     yubico-pam # allows use of yubikey for authentication
     android-tools # for connecting to android phone filesystems
     dmenu # lightweight spotlight
+    newsboat # rss reader
     mutt
     isync
     msmtp
