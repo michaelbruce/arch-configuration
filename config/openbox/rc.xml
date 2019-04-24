@@ -248,6 +248,12 @@
       </action>
     </keybind>
 
+    <keybind key="A-S-C">
+      <action name="Execute">
+        <command>emacs</command>
+      </action>
+    </keybind>
+
     <keybind key="A-S-B">
       <action name="Execute">
         <command>firefox</command>
@@ -256,7 +262,7 @@
 
     <keybind key="A-S-R">
       <action name="Execute">
-        <command>openbox --reconfigure</command>
+        <command>openbox --restart</command>
       </action>
     </keybind>
 
