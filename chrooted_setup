@@ -129,6 +129,7 @@ install_pacaur_and_extra_packages() {
   ripgrep
   xcalib
   lierolibre # the best worms game.
+  mongodb-tools-bin
   )
 
   pacaur --noconfirm --needed -Scc $(join_by ' ' "${packages[@]}")
