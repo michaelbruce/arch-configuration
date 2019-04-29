@@ -55,6 +55,7 @@ install_essential_packages() {
     docker-compose
     slock
     peek
+    pacgraph # visualise package sizes/deps
     evince
     visualvm
     go
