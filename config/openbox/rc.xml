@@ -119,11 +119,28 @@
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
     <!-- Keybindings for desktop switching -->
-    <keybind key="C-A-Left">
-      <action name="GoToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
+    <keybind key="A-S-A">
+      <action name="UnmaximizeFull"/>
+      <action name="MaximizeVert"/>
+      <action name="MoveResizeTo">
+        <width>40%</width>
       </action>
+      <action name="MoveToEdge">
+        <direction>west</direction>
+      </action>
+    </keybind>
+    <keybind key="A-S-D">
+      <action name="UnmaximizeFull"/>
+      <action name="MaximizeVert"/>
+      <action name="MoveResizeTo">
+        <width>60%</width>
+      </action>
+      <action name="MoveToEdge">
+        <direction>east</direction>
+      </action>
+    </keybind>
+    <keybind key="A-Return">
+      <action name="ToggleMaximize"/>
     </keybind>
     <keybind key="C-A-Right">
       <action name="GoToDesktop">

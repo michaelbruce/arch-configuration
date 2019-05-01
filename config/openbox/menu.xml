@@ -362,6 +362,14 @@
       </startupnotify>
     </action>
   </item>
+  <item label="TigerVNC Client">
+    <action name="Execute">
+      <command>vncviewer</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
   <separator label="Applications" />
   <menu id="apps-accessories-menu"/>
   <menu id="apps-editors-menu"/>
