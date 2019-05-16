@@ -23,6 +23,12 @@ install_bspwm() {
   fi
 }
 
+install_yay() { # not currently used
+  git clone https://aur.archlinux.org/yay.git
+  cd yay
+  makepkg -si
+}
+
 install_essential_packages() {
     join_by() { local IFS="$1"; shift; echo "$*"; }
 
