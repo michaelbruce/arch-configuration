@@ -267,7 +267,7 @@
 
     <keybind key="A-S-C">
       <action name="Execute">
-        <command>emacs</command>
+        <command>code</command>
       </action>
     </keybind>
 
