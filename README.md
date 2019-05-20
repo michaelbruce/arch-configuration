@@ -47,6 +47,8 @@ Ensure AutoEnable is set to true in `/etc/bluetooth/main.conf`
 [Policy]
 AutoEnable=true
 
+> Current issue - we can connect to the bluetooth devices using the connect
+> command but autoconnect on startup is not happening.
 
 There was a problem with bluetooth agents (unsure of this term)
 
