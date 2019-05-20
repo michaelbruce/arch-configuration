@@ -36,3 +36,14 @@ echo 'modprobe hid_magicmouse scroll_acceleration=1 scroll_speed=55' > /etc/modp
 ssh-agent will fail to start if ssh socket already exists (or is possibly bound
 to a port that gets taken elsewhere) - either way removing the file before
 starting the service would be great.. maybe we should just /tmp it?
+
+### Bluetooth
+
+sudo systemctl enable bluetooth # include bluetooth at startup
+> proceed to pair devices with bluetoothctl
+
+There was a problem with bluetooth agents (unsure of this term)
+
+When running bluetoothctl I was given a: `Agent registered` prompt. Upon typing
+default-agent.. I was able to register with my mouse/keyboard as normally
+expected.
