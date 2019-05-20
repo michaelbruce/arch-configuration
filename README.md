@@ -40,7 +40,13 @@ starting the service would be great.. maybe we should just /tmp it?
 ### Bluetooth
 
 sudo systemctl enable bluetooth # include bluetooth at startup
-> proceed to pair devices with bluetoothctl
+> proceed to pair devices with bluetoothctl - pair <ID>
+> proceed to trust devices with bluetoothctl - trust <ID>
+
+Ensure AutoEnable is set to true in `/etc/bluetooth/main.conf`
+[Policy]
+AutoEnable=true
+
 
 There was a problem with bluetooth agents (unsure of this term)
 
