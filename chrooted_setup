@@ -40,6 +40,7 @@ install_essential_packages() {
     android-tools # for connecting to android phone filesystems
     dmenu # lightweight spotlight
     newsboat # rss reader
+    upower # get battery information for bluetooth periperhals
     mutt
     isync
     msmtp
