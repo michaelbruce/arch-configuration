@@ -139,9 +139,9 @@
         <direction>east</direction>
       </action>
     </keybind>
-    <keybind key="A-Return">
-      <action name="ToggleMaximize"/>
-    </keybind>
+    <!-- <keybind key="A-Return"> -->
+    <!--   <action name="ToggleMaximize"/> -->
+    <!-- </keybind> -->
     <keybind key="C-A-Right">
       <action name="GoToDesktop">
         <to>right</to>
