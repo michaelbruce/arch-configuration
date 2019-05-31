@@ -42,6 +42,8 @@ install_essential_packages() {
     newsboat # rss reader
     upower # get battery information for bluetooth periperhals
     mutt
+    ttf-ubuntu-font-family
+    ttf-montserrat
     isync
     msmtp
     xlock
