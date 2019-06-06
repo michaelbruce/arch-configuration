@@ -1,0 +1,13 @@
+config/.grant
+config/Code - OSS/
+config/GIMP/
+config/Thunar/
+config/VirtualBox/
+config/chromium/
+config/clojure/
+config/configstore/
+config/dconf/
+config/eog/
+config/pavucontrol.ini
+config/pulse/
+config/zoomus.conf

@@ -14,6 +14,11 @@
   - include a post install collection of steps that can be rerun to keep
     packages up to date/install clean etc
 
+# TODO
+
+- gimp settings are not saved currently (I don't do any configuration)
+- thunar settings not saved
+
 ## OLD README CONTENT (come back to this)
 
 A set of files that install and configure arch linux
@@ -71,3 +76,7 @@ There was a problem with bluetooth agents (unsure of this term)
 When running bluetoothctl I was given a: `Agent registered` prompt. Upon typing
 default-agent.. I was able to register with my mouse/keyboard as normally
 expected.
+
+### Notes
+
+GIMP is still on GTK2 and so will use the config files
