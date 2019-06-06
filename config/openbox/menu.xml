@@ -354,6 +354,22 @@
       </startupnotify>
     </action>
   </item>
+  <item label="Goland">
+    <action name="Execute">
+      <command>goland</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="IntelliJ Community Edition">
+    <action name="Execute">
+      <command>intellij</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
   <item label="Sublime Text 3">
     <action name="Execute">
       <command>subl3</command>

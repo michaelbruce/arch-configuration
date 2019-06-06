@@ -15,7 +15,7 @@
     <policy>Smart</policy> <!-- 'Smart' or 'UnderMouse' -->
     <center>yes</center>
     <monitor>Primary</monitor>
-    <primaryMonitor>1</primaryMonitor>
+    <primaryMonitor>Active</primaryMonitor>
   </placement>
   <theme>
     <name>Clearlooks</name>
@@ -23,38 +23,38 @@
     <keepBorder>no</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>sans</name>
-      <size>8</size>
+      <name>Montserrat</name>
+      <size>10</size>
       <weight>bold</weight>
       <slant>normal</slant>
     </font>
     <font place="InactiveWindow">
-      <name>sans</name>
-      <size>8</size>
+      <name>Montserrat</name>
+      <size>10</size>
       <weight>bold</weight>
       <slant>normal</slant>
     </font>
     <font place="MenuHeader">
-      <name>sans</name>
-      <size>9</size>
+      <name>Montserrat</name>
+      <size>12</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="MenuItem">
-      <name>sans</name>
-      <size>9</size>
+      <name>Montserrat</name>
+      <size>12</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name>sans</name>
-      <size>9</size>
+      <name>Montserrat</name>
+      <size>12</size>
       <weight>bold</weight>
       <slant>normal</slant>
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>sans</name>
-      <size>9</size>
+      <name>Montserrat</name>
+      <size>12</size>
       <weight>bold</weight>
       <slant>normal</slant>
     </font>
@@ -98,24 +98,6 @@
     <left>0</left>
     <right>0</right>
   </margins>
-  <dock>
-    <position>TopLeft</position>
-    <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
-    <noStrut>no</noStrut>
-    <stacking>Above</stacking>
-    <!-- 'Above', 'Normal', or 'Below' -->
-    <direction>Vertical</direction>
-    <!-- 'Vertical' or 'Horizontal' -->
-    <autoHide>no</autoHide>
-    <hideDelay>300</hideDelay>
-    <!-- in milliseconds (1000 = 1 second) -->
-    <showDelay>300</showDelay>
-    <!-- in milliseconds (1000 = 1 second) -->
-    <moveButton>Middle</moveButton>
-    <!-- 'Left', 'Middle', 'Right' -->
-  </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
     <!-- Keybindings for desktop switching -->
@@ -267,7 +249,8 @@
 
     <keybind key="A-S-C">
       <action name="Execute">
-        <command>code</command>
+        <command>obxprop > $HOME/the_file</command>
+          <!-- <command>code</command> -->
       </action>
     </keybind>
 
@@ -690,6 +673,14 @@
       <position>
         <x>40%</x>
         <y>0</y>
+      </position>
+    </application>
+
+    <!-- general new things belong in the center -->
+    <application class="*">
+      <position force="no">
+        <x>center</x>
+        <y>center</y>
       </position>
     </application>
 
