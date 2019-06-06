@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"sysconf/pacman"
 )
 
 // !/bin/sh -e
@@ -33,6 +34,8 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
+	pacman.Exists()
 
 	fmt.Printf("packages %v\n", packages)
 }
