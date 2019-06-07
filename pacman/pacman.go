@@ -46,9 +46,6 @@ func InstalledPackages() []Package {
 
 	for _, pline := range packagesByLine {
 		fields := strings.Fields(pline)
-		if len(fields) == 0 {
-			fmt.Printf("WHAT %v")
-		}
 		packages = append(packages, Package{fields[0]})
 	}
 
