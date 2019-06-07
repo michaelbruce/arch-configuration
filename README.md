@@ -40,6 +40,7 @@ A utility for installing and configuring Arch Linux
 - efibootmgr/efivar for UEFI machines
 - font-manager
 - wkhtmltopdf-static
+- iptables
 
 ## OLD README CONTENT (come back to this)
 
