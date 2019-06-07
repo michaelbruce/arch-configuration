@@ -6,16 +6,16 @@ A utility for installing and configuring Arch Linux
 
 # Requirements
 
-- Install a new arch distribution (practice on my laptop)
-  - on efi/mbr
-  - on ssd/nvm
-- Update install to latest arch live distro
-- Potentially have your own arch live distro?
-- Update packages (and remove/warn other packages)
-- Store config (and warn/clean unwanted config)
-- Include different configurations (e.g desktop uses nvidia)
-- Allow all steps to be performed individually
-  - include a post install collection of steps that can be rerun to keep
+- [ ] Install a new arch distribution (practice on my laptop)
+  - [ ] on efi/mbr
+  - [ ] on ssd/nvm
+- [ ] Update install to latest arch live distro
+- [ ] Potentially have your own arch live distro?
+- [ ] Update packages (and remove/warn other packages)
+- [ ] Store config (and warn/clean unwanted config)
+- [ ] Include different configurations (e.g desktop uses nvidia)
+- [ ] Allow all steps to be performed individually
+  - [x] include a post install collection of steps that can be rerun to keep
     packages up to date/install clean etc
 
 # TODO
