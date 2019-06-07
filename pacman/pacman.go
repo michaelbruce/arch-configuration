@@ -13,6 +13,12 @@ type Package struct {
 	Name string `json:"name"`
 }
 
+type Packages []Package
+
+// depending sys config, may include uefi/mbr packages etc.
+// might be better off as a function call to figure that out.
+// CorePackages...
+
 // calls pacman and returns the result as a string
 func pacman(args ...string) string {
 	var cmd = exec.Command("pacman", args...)
@@ -44,9 +50,9 @@ func Exists() bool {
 }
 
 // Returns a list of all packages installed by pacman.
-func InstalledPackages() []Package {
+func InstalledPackages() Packages {
 	var output = pacman("-Q")
-	var packages []Package
+	var packages Packages
 
 	packagesByLine := strings.Split(output, "\n")
 	packagesByLine = packagesByLine[:len(packagesByLine)-1] // last line is always blank
@@ -60,8 +66,8 @@ func InstalledPackages() []Package {
 }
 
 // Dependencies returns a list of packages that Package p depends on.
-func (p Package) Dependencies() []Package {
-	var dependencies = []Package{}
+func (p Package) Dependencies() Packages {
+	var dependencies Packages
 	var output = pacman("-Qi", p.Name)
 
 	for _, irow := range strings.Split(output, "\n") {
@@ -75,14 +81,28 @@ func (p Package) Dependencies() []Package {
 	return dependencies
 }
 
+// dedupes Packages
+//func (ps Packages) Uniq() []Package {
+//
+//}
+
 // Update takes a list of required packages, find their dependencies and installs them.
 // Removes packages not included in this group except for core packages such as the Linux Kernel.
-func Update(required []Package) {
+func Update(requested Packages) {
 	fmt.Println("updating...")
+	fmt.Printf("requested packages: %v\n", requested)
+
+	var required Packages
+
+	for _, p := range requested {
+		required = append(required, p) // also want p.Dependencies...
+		required = append(required, p.Dependencies()...)
+	}
+
 	fmt.Printf("required packages: %v\n", required)
 	// list currently installed packages
-	// find deps for required packages
-	// group that is not a required, dep or core package named orphaned packages
+	// find deps for requested packages
+	// group that is not a requested, dep or core package named orphaned packages
 	// remove orphans.
-	// include required + deps
+	// include requested + deps (group named required packages
 }
