@@ -41,10 +41,5 @@ func main() {
 
 	fmt.Printf("number of installed packages: %v\n", len(installedPackages))
 
-	// from the installed packages
-	// what depends on my 'core' packages (from packages.json)
-	// get all deps for 'core' packages
-	// remove orphaned packages (handle cases like linux and linux-headers
-	// define core packages by sysconf with additional 'required' packages from packages.json
-	// install all 'core' and deps for core.
+	pacman.Update(installedPackages)
 }

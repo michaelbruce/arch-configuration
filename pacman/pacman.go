@@ -51,3 +51,15 @@ func InstalledPackages() []Package {
 
 	return packages
 }
+
+// Update takes a list of required packages, find their dependencies and installs them.
+// Removes packages not included in this group except for core packages such as the Linux Kernel.
+func Update(required []Package) {
+	fmt.Println("updating...")
+	fmt.Printf("required packages: %v\n", required)
+	// list currently installed packages
+	// find deps for required packages
+	// group that is not a required, dep or core package named orphaned packages
+	// remove orphans.
+	// include required + deps
+}
