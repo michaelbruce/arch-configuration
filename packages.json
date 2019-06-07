@@ -47,5 +47,6 @@
   {"name": "sed"},
   {"name": "rlwrap"},
   {"name": "readline"},
+  {"name": "minecraft"},
   {"name": "tmux"}
 ]
