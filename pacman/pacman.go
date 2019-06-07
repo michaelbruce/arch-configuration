@@ -1,16 +1,30 @@
 // Pacman is a package for interacting with Arch's Pacman Package Manager.
 // https://www.archlinux.org/pacman/
-// TODO address multiple checks for pacman (err != nil)
 package pacman
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"strings"
 )
 
 type Package struct {
 	Name string `json:"name"`
+}
+
+// calls pacman and returns the result as a string
+func pacman(args ...string) string {
+	var cmd = exec.Command("pacman", args...)
+
+	output, err := cmd.Output()
+
+	if err != nil {
+		fmt.Printf("pacman not detected: %v\n", err)
+		os.Exit(1)
+	}
+
+	return string(output)
 }
 
 // Exists is used to make sure the pacman command exists.
@@ -31,18 +45,10 @@ func Exists() bool {
 
 // Returns a list of all packages installed by pacman.
 func InstalledPackages() []Package {
-	var cmd = exec.Command("pacman", "-Q")
-
-	output, err := cmd.Output()
-
-	if err != nil {
-		fmt.Printf("request for packages from pacman failed:", err)
-		return []Package{}
-	}
-
+	var output = pacman("-Q")
 	var packages []Package
 
-	packagesByLine := strings.Split(string(output), "\n")
+	packagesByLine := strings.Split(output, "\n")
 	packagesByLine = packagesByLine[:len(packagesByLine)-1] // last line is always blank
 
 	for _, pline := range packagesByLine {
@@ -55,18 +61,18 @@ func InstalledPackages() []Package {
 
 // Dependencies returns a list of packages that Package p depends on.
 func (p Package) Dependencies() []Package {
-	var cmd = exec.Command("pacman", "-Qi", p.Name)
+	var dependencies = []Package{}
+	var output = pacman("-Qi", p.Name)
 
-	output, err := cmd.Output()
-
-	if err != nil {
-		fmt.Printf("pacman not detected: %v\n", err)
-		return []Package{}
+	for _, irow := range strings.Split(output, "\n") {
+		if strings.Contains(irow, "Depends On") {
+			for _, dep := range strings.Fields(irow)[3:] {
+				dependencies = append(dependencies, Package{dep})
+			}
+		}
 	}
 
-	fmt.Println(string(output))
-
-	return []Package{}
+	return dependencies
 }
 
 // Update takes a list of required packages, find their dependencies and installs them.
