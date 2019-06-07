@@ -30,7 +30,7 @@ func pacman(args ...string) string {
 	output, err := cmd.Output()
 
 	if err != nil {
-		fmt.Printf("pacman not detected: %v %v\n", args, err)
+		fmt.Printf("pacman error: %v %v\n", args, err)
 		os.Exit(1)
 	}
 
