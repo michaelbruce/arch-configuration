@@ -116,11 +116,7 @@ func (ps Packages) Dependencies() Packages {
 		}
 	}
 
-	if len(dependencies) != 0 && dependencies[0].Name == "None" {
-		return Packages{} // empty list when there are no dependencies
-	}
-
-	return dependencies
+	return dependencies.uniq()
 }
 
 // returns Packages that are missing from ps according to cps
@@ -143,6 +139,48 @@ func (ps Packages) missing(cps Packages) Packages {
 	return missing
 }
 
+func Remove(ps Packages) error {
+	var names []string
+
+	for _, p := range ps {
+		names = append(names, p.Name)
+	}
+
+	args := []string{"pacman", "-R", "--noconfirm"}
+	args = append(args, names...)
+	cmd := exec.Command("sudo", args...)
+
+	out, err := cmd.Output()
+
+	if err != nil {
+		fmt.Println(string(out), err)
+	}
+
+	fmt.Println(string(out))
+	return nil
+}
+
+func Install(ps Packages) error {
+	var names []string
+
+	for _, p := range ps {
+		names = append(names, p.Name)
+	}
+
+	args := []string{"pacman", "-Syu", "--noconfirm", "--needed"}
+	args = append(args, names...)
+	cmd := exec.Command("sudo", args...)
+
+	out, err := cmd.Output()
+
+	if err != nil {
+		fmt.Println(string(out), err)
+	}
+
+	fmt.Println(string(out))
+	return nil
+}
+
 // Update takes a list of required packages, find their dependencies and installs them.
 // Removes packages not included in this group except for core packages such as the Linux Kernel.
 func Update(requested Packages) {
@@ -163,4 +201,20 @@ func Update(requested Packages) {
 	fmt.Printf("number of extra packages: %v\n", len(extra))
 	// remove extra packages
 	// install required packages
+
+	if len(extra) != 0 {
+		fmt.Printf("Removing %v extra packages\n", len(extra))
+		err := Remove(extra)
+
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	fmt.Printf("Installing %v required packages\n", len(required))
+	err := Install(required)
+
+	if err != nil {
+		panic(err)
+	}
 }
