@@ -65,11 +65,34 @@ func InstalledPackages() Packages {
 	return packages
 }
 
-// Dependencies returns a list of packages that Package p depends on.
-// TODO fails when querying for a package that is not currently installed
-func (p Package) Dependencies() Packages {
+// uniq dedupes a list of Packages
+func (ps Packages) uniq() Packages {
+	seen := make(map[Package]struct{}, len(ps))
+	j := 0
+	for _, v := range ps {
+		if _, ok := seen[v]; ok {
+			continue
+		}
+		seen[v] = struct{}{}
+		ps[j] = v
+		j++
+	}
+	return ps[:j]
+}
+
+// Dependencies returns a list of packages that Packages ps depend on.
+// We call dependencies as a group to perform a single remote query
+// TODO fails when querying for a package that does not exist
+func (ps Packages) Dependencies() Packages {
 	var dependencies Packages
-	var output = pacman("-Si", p.Name)
+	var packageNames []string
+
+	for _, p := range ps {
+		packageNames = append(packageNames, p.Name)
+	}
+
+	args := append([]string{"-Si"}, packageNames...)
+	var output = pacman(args...)
 
 	for _, irow := range strings.Split(output, "\n") {
 		if strings.Contains(irow, "Depends On") {
@@ -86,23 +109,14 @@ func (p Package) Dependencies() Packages {
 	return dependencies
 }
 
-// dedupes Packages
-//func (ps Packages) Uniq() []Package {
-//
-//}
-
 // Update takes a list of required packages, find their dependencies and installs them.
 // Removes packages not included in this group except for core packages such as the Linux Kernel.
 func Update(requested Packages) {
 	fmt.Println("updating...")
 	fmt.Printf("requested packages: %v\n", requested)
 
-	var required Packages
-
-	for _, p := range requested {
-		required = append(required, p) // also want p.Dependencies...
-		required = append(required, p.Dependencies()...)
-	}
+	var required = requested
+	required = append(required, requested.Dependencies()...)
 
 	fmt.Printf("required packages: %v\n", required)
 

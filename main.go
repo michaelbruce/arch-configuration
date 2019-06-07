@@ -39,7 +39,4 @@ func main() {
 
 	pacman.Update(packages)
 
-	fmt.Println("deps for firefox:", pacman.Package{"firefox"}.Dependencies())
-	fmt.Println("deps for gimp:", pacman.Package{"gimp"}.Dependencies())
-
 }
