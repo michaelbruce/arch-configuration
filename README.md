@@ -22,6 +22,8 @@ A utility for installing and configuring Arch Linux
 
 - gimp settings are not saved currently (I don't do any configuration)
 - thunar settings not saved
+- sudo cp $(which vim) /usr/local/bin/vi
+- mongo is in AUR due to licensing...
 - replacements for:
     - evince (has lots of deps)
     - thunar

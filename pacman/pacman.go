@@ -18,6 +18,10 @@ type Packages []Package
 // depending sys config, may include uefi/mbr packages etc.
 // might be better off as a function call to figure that out.
 // CorePackages...
+// FOR NOW we are just including everything in requested packages
+//var CorePackages = []string{
+//	"ntp",
+//}
 
 // calls pacman and returns the result as a string
 func pacman(args ...string) string {
@@ -83,6 +87,7 @@ func (ps Packages) uniq() Packages {
 // Dependencies returns a list of packages that Packages ps depend on.
 // We call dependencies as a group to perform a single remote query
 // TODO fails when querying for a package that does not exist
+// TODO does not support groups e.g "xorg" must use packages e.g "xorg-server"
 func (ps Packages) Dependencies() Packages {
 	var dependencies Packages
 	var packageNames []string
