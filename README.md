@@ -24,6 +24,7 @@ A utility for installing and configuring Arch Linux
 - thunar settings not saved
 - sudo cp $(which vim) /usr/local/bin/vi
 - mongo is in AUR due to licensing...
+- lspci | grep NVIDIA - install nvidia
 - replacements for:
     - evince (has lots of deps)
     - thunar

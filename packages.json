@@ -43,5 +43,9 @@
   {"name": "ttf-dejavu"},
   {"name": "npm"},
   {"name": "jq"},
+  {"name": "sudo"},
+  {"name": "sed"},
+  {"name": "rlwrap"},
+  {"name": "readline"},
   {"name": "tmux"}
 ]
