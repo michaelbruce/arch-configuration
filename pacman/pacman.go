@@ -1,5 +1,6 @@
 // Pacman is a package for interacting with Arch's Pacman Package Manager.
 // https://www.archlinux.org/pacman/
+// TODO address multiple checks for pacman (err != nil)
 package pacman
 
 import (
@@ -50,6 +51,22 @@ func InstalledPackages() []Package {
 	}
 
 	return packages
+}
+
+// Dependencies returns a list of packages that Package p depends on.
+func (p Package) Dependencies() []Package {
+	var cmd = exec.Command("pacman", "-Qi", p.Name)
+
+	output, err := cmd.Output()
+
+	if err != nil {
+		fmt.Printf("pacman not detected: %v\n", err)
+		return []Package{}
+	}
+
+	fmt.Println(string(output))
+
+	return []Package{}
 }
 
 // Update takes a list of required packages, find their dependencies and installs them.

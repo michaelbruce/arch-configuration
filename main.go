@@ -38,4 +38,6 @@ func main() {
 	fmt.Printf("number of installed packages: %v\n", len(installedPackages))
 
 	pacman.Update(installedPackages)
+
+	pacman.Package{"firefox"}.Dependencies()
 }
