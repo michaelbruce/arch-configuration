@@ -48,5 +48,7 @@
   {"name": "sed"},
   {"name": "rlwrap"},
   {"name": "readline"},
+  {"name": "vlc"},
+  {"name": "pacman-contrib"},
   {"name": "tmux"}
 ]

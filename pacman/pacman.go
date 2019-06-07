@@ -30,7 +30,20 @@ func pacman(args ...string) string {
 	output, err := cmd.Output()
 
 	if err != nil {
-		fmt.Printf("pacman error: %v %v\n", args, err)
+		fmt.Printf("pacman error: %v %v %v\n", args, string(output), err)
+		os.Exit(1)
+	}
+
+	return string(output)
+}
+
+func pactree(args ...string) string {
+	var cmd = exec.Command("pactree", args...)
+
+	output, err := cmd.Output()
+
+	if err != nil {
+		fmt.Printf("pactree error: %v %v %v\n", args, string(output), err)
 		os.Exit(1)
 	}
 
@@ -93,17 +106,11 @@ func (ps Packages) Dependencies() Packages {
 	var packageNames []string
 
 	for _, p := range ps {
-		packageNames = append(packageNames, p.Name)
-	}
+		packageNames = strings.Split(pactree("-slu", p.Name), "\n")
+		packageNames = packageNames[:len(packageNames)-1]
 
-	args := append([]string{"-Si"}, packageNames...)
-	var output = pacman(args...)
-
-	for _, irow := range strings.Split(output, "\n") {
-		if strings.Contains(irow, "Depends On") {
-			for _, dep := range strings.Fields(irow)[3:] {
-				dependencies = append(dependencies, Package{dep})
-			}
+		for _, d := range packageNames {
+			dependencies = append(dependencies, Package{d})
 		}
 	}
 
@@ -152,9 +159,6 @@ func Update(requested Packages) {
 	fmt.Printf("number of required packages: %v\n", len(required))
 	fmt.Printf("number of installed packages: %v\n", len(InstalledPackages()))
 	fmt.Printf("number of extra packages: %v\n", len(extra))
-	// list currently installed packages
-	// find deps for requested packages
-	// group that is not a requested, dep or core package named orphaned packages
-	// remove orphans.
-	// include requested + deps (group named required packages
+	// remove extra packages
+	// install required packages
 }
