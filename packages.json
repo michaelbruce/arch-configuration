@@ -4,6 +4,7 @@
   {"name": "go"},
   {"name": "clojure"},
   {"name": "git"},
+  {"name": "git-crypt"},
   {"name": "tig"},
   {"name": "pacgraph"},
   {"name": "peek"},
