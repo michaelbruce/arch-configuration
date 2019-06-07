@@ -114,6 +114,26 @@ func (ps Packages) Dependencies() Packages {
 	return dependencies
 }
 
+// returns Packages that are missing from ps according to cps
+func (ps Packages) missing(cps Packages) Packages {
+	var missing Packages
+
+	for _, cp := range cps {
+		var found bool
+		for _, p := range ps {
+			if p.Name == cp.Name {
+				found = true
+			}
+		}
+
+		if !found {
+			missing = append(missing, cp)
+		}
+	}
+
+	return missing
+}
+
 // Update takes a list of required packages, find their dependencies and installs them.
 // Removes packages not included in this group except for core packages such as the Linux Kernel.
 func Update(requested Packages) {
@@ -125,8 +145,13 @@ func Update(requested Packages) {
 
 	fmt.Printf("required packages: %v\n", required)
 
+	extra := required.missing(InstalledPackages())
+	fmt.Printf("extra packages: %v\n", extra)
+
 	fmt.Printf("number of requested packages: %v\n", len(requested))
 	fmt.Printf("number of required packages: %v\n", len(required))
+	fmt.Printf("number of installed packages: %v\n", len(InstalledPackages()))
+	fmt.Printf("number of extra packages: %v\n", len(extra))
 	// list currently installed packages
 	// find deps for requested packages
 	// group that is not a requested, dep or core package named orphaned packages
