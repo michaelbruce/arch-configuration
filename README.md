@@ -23,14 +23,23 @@ A utility for installing and configuring Arch Linux
 - gimp settings are not saved currently (I don't do any configuration)
 - thunar settings not saved
 - sudo cp $(which vim) /usr/local/bin/vi
-- lspci | grep NVIDIA - install nvidia
+- lspci | grep NVIDIA - install nvidia (nvidia currently default)
 - replacements for:
     - evince (has lots of deps)
     - thunar
     - slock
 - install from AUR:
+    - yay (installs others potentially)
     - mongo
     - minecraft
+    - lierolibre
+    - zoom
+    - ttf-ms-fonts
+- with thunar/pavucontrol etc should you just use a window manager?
+- steam?
+- efibootmgr/efivar for UEFI machines
+- font-manager
+- wkhtmltopdf-static
 
 ## OLD README CONTENT (come back to this)
 

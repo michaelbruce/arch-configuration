@@ -101,6 +101,8 @@ func (ps Packages) uniq() Packages {
 // We call dependencies as a group to perform a single remote query
 // TODO fails when querying for a package that does not exist
 // TODO does not support groups e.g "xorg" must use packages e.g "xorg-server"
+// TODO could be querying local db if package exists
+// TODO could be querying concurrently
 func (ps Packages) Dependencies() Packages {
 	var dependencies Packages
 	var packageNames []string
