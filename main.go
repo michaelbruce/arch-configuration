@@ -8,10 +8,6 @@ import (
 	"sysconf/pacman"
 )
 
-// !/bin/sh -e
-// keeps arch install fresh by:
-//   - updating packages
-
 func main() {
 	fmt.Println("updating system configuration...")
 
