@@ -1,5 +1,10 @@
 [
   {"name": "ripgrep"},
   {"name": "tree"},
-  {"name": "go"}
+  {"name": "go"},
+  {"name": "git"},
+  {"name": "tig"},
+  {"name": "pacgraph"},
+  {"name": "peek"},
+  {"name": "aws-cli"}
 ]

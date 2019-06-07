@@ -26,7 +26,7 @@ func pacman(args ...string) string {
 	output, err := cmd.Output()
 
 	if err != nil {
-		fmt.Printf("pacman not detected: %v\n", err)
+		fmt.Printf("pacman not detected: %v %v\n", args, err)
 		os.Exit(1)
 	}
 
@@ -66,9 +66,10 @@ func InstalledPackages() Packages {
 }
 
 // Dependencies returns a list of packages that Package p depends on.
+// TODO fails when querying for a package that is not currently installed
 func (p Package) Dependencies() Packages {
 	var dependencies Packages
-	var output = pacman("-Qi", p.Name)
+	var output = pacman("-Si", p.Name)
 
 	for _, irow := range strings.Split(output, "\n") {
 		if strings.Contains(irow, "Depends On") {
