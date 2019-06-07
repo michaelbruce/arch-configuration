@@ -1,4 +1,8 @@
-# Arch Configuration
+# sysconf
+
+A utility for installing and configuring Arch Linux
+
+(uses and better README to come as tool is written, currently translating a few bash scripts into Go.)
 
 # Requirements
 
