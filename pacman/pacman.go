@@ -199,8 +199,6 @@ func Update(requested Packages) {
 	fmt.Printf("number of required packages: %v\n", len(required))
 	fmt.Printf("number of installed packages: %v\n", len(InstalledPackages()))
 	fmt.Printf("number of extra packages: %v\n", len(extra))
-	// remove extra packages
-	// install required packages
 
 	if len(extra) != 0 {
 		fmt.Printf("Removing %v extra packages\n", len(extra))
