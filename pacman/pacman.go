@@ -78,6 +78,10 @@ func (p Package) Dependencies() Packages {
 		}
 	}
 
+	if len(dependencies) != 0 && dependencies[0].Name == "None" {
+		return Packages{} // empty list when there are no dependencies
+	}
+
 	return dependencies
 }
 
@@ -100,6 +104,9 @@ func Update(requested Packages) {
 	}
 
 	fmt.Printf("required packages: %v\n", required)
+
+	fmt.Printf("number of requested packages: %v\n", len(requested))
+	fmt.Printf("number of required packages: %v\n", len(required))
 	// list currently installed packages
 	// find deps for requested packages
 	// group that is not a requested, dep or core package named orphaned packages

@@ -22,6 +22,7 @@ A utility for installing and configuring Arch Linux
 
 - gimp settings are not saved currently (I don't do any configuration)
 - thunar settings not saved
+- evince has a lot of deps (replace)
 
 ## OLD README CONTENT (come back to this)
 
