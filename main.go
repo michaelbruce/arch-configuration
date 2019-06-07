@@ -37,7 +37,7 @@ func main() {
 
 	fmt.Printf("number of installed packages: %v\n", len(installedPackages))
 
-	pacman.Update(installedPackages)
+	pacman.Update(packages)
 
 	fmt.Println("deps for firefox:", pacman.Package{"firefox"}.Dependencies())
 	fmt.Println("deps for gimp:", pacman.Package{"gimp"}.Dependencies())
