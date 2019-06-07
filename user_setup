@@ -11,21 +11,21 @@ install_bspwm() {
     make && make install
 }
 
-install_arch_configuration() {
+install_sysconf() {
     mkdir -p $HOME/src
     git clone \
-        https://github.com/mikepjb/arch-configuration \
-        $HOME/src/arch-configuration
+        https://github.com/mikepjb/sysconf \
+        $HOME/src/sysconf
     [ -L $HOME/.config ] && unlink $HOME/.config
     [ -d $HOME/.config ] && rm $HOME/.config
-    ln -sfv $HOME/src/arch-configuration/config $HOME/.config
+    ln -sfv $HOME/src/sysconf/config $HOME/.config
     mkdir -p ~/Pictures/backgrounds
-    ln -s $HOME/src/arch-configuration/wallpaper.jpg $HOME/Pictures/backgrounds/wallpaper.jpg
+    ln -s $HOME/src/sysconf/wallpaper.jpg $HOME/Pictures/backgrounds/wallpaper.jpg
 }
 
 main() {
   install_toolkit
-  install_arch_configuration
+  install_sysconf
 }
 
 main

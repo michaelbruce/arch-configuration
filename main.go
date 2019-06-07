@@ -12,14 +12,10 @@ import (
 // keeps arch install fresh by:
 //   - updating packages
 
-type Package struct {
-	Name string `json:"name"`
-}
-
 func main() {
 	fmt.Println("updating system configuration...")
 
-	var packages []Package
+	var packages []pacman.Package
 
 	pfile, err := ioutil.ReadFile("packages.json")
 
@@ -35,7 +31,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	pacman.Exists()
+	if !pacman.Exists() {
+		os.Exit(1)
+	}
 
-	fmt.Printf("packages %v\n", packages)
+	fmt.Printf("packages to include %v\n", packages)
+
+	installedPackages := pacman.InstalledPackages()
+
+	fmt.Printf("number of installed packages: %v\n", len(installedPackages))
 }
