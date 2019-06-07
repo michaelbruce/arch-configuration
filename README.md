@@ -41,6 +41,7 @@ A utility for installing and configuring Arch Linux
 - font-manager
 - wkhtmltopdf-static
 - iptables
+- full disk encryption (LUKS)
 
 ## OLD README CONTENT (come back to this)
 
