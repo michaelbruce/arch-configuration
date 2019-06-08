@@ -4,17 +4,37 @@ A utility for installing and configuring Arch Linux
 
 (uses and better README to come as tool is written, currently translating a few bash scripts into Go.)
 
+## Operations
+
+### Boot
+Preparing a live USB Arch system, including an X environment and sysconf.  
+Simply invoke the command:
+
+`sysconf -live /dev/sdx` 
+
+Where /dev/sdx is an unmounted USB volume, after the setup time (about 10 minutes) you should have a bootable live version of Arch.
+
+### Install
+Once you have booted into your live Arch setup, you can install a more permanent Arch Linux on one of your host machine's storage volumes with:
+
+`sysconf -install /dev/sdy`
+
+Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat (make sure you backup, all your data will be lost!) and install Arch Linux on.
+
+### Update
+- Keeping the new OS synced and up to date
+
 # Requirements
 
 - [ ] Install a new arch distribution (practice on my laptop)
   - [ ] on efi/mbr
   - [ ] on ssd/nvm
 - [ ] Update install to latest arch live distro
-- [ ] Potentially have your own arch live distro?
-- [ ] Update packages (and remove/warn other packages)
-- [ ] Store config (and warn/clean unwanted config)
+- [x] Potentially have your own arch live distro?
+- [x] Update packages (and remove/warn other packages)
+- [x] Store config (and warn/clean unwanted config)
 - [ ] Include different configurations (e.g desktop uses nvidia)
-- [ ] Allow all steps to be performed individually
+- [x] Allow all steps to be performed individually
   - [x] include a post install collection of steps that can be rerun to keep
     packages up to date/install clean etc
 

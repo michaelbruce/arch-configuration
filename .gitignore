@@ -11,3 +11,5 @@ config/eog/
 config/pavucontrol.ini
 config/pulse/
 config/zoomus.conf
+.idea
+sysconf
