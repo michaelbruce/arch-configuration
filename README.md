@@ -19,7 +19,7 @@ Once you have booted into your live Arch setup, you can install a more permanent
 
 `sysconf -install /dev/sdy`
 
-Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat (make sure you backup, all your data will be lost!) and install Arch Linux on.
+Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and install Arch Linux on.
 
 ### Update
 - Keeping the new OS synced and up to date

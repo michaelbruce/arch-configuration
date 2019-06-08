@@ -11,6 +11,16 @@ import (
 
 func install() {
 	fmt.Println("installing Arch Linux on /dev/sdx...")
+	// 1. Use lsblk -J to check that the target has at least 10gb
+	// 2. Warn the user that you are going to wipe the target (or call them chicken.)
+	// 3. determine if uefi or mbr machine with dmesg (dmesg | grep EFI >/dev/null)
+	// TODO it would be nice to keep this setting - but perhaps we can just check whether either mbr or uefi packages are present and figure things out that way.
+	// 4. check you are root/have the correct permissions
+	// 5. setup the target disk reformat/create partitions
+	// TODO: should I create swap partition or swap file (how do I make a swap file permanent?)
+	// 6. include pacman with pacstrap
+	// 7. create file system table
+	// 8. download tools.. setup for root?
 }
 
 func update() {
