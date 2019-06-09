@@ -5,12 +5,24 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
+	"sysconf/install"
 	"sysconf/pacman"
 )
 
-func install() {
-	fmt.Println("installing Arch Linux on /dev/sdx...")
+func installOperation() {
+	target := "/dev/sda"
+	fmt.Printf("installing Arch Linux on %v...\n", target)
+	ok, err := install.CheckCapacity(target)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if ok {
+		fmt.Printf("there is enough space on %v\n", target)
+	}
 	// 1. Use lsblk -J to check that the target has at least 10gb
 	// 2. Warn the user that you are going to wipe the target (or call them chicken.)
 	// 3. determine if uefi or mbr machine with dmesg (dmesg | grep EFI >/dev/null)
@@ -65,7 +77,7 @@ func main() {
 	if *bootPtr && !*installPtr && !*updatePtr {
 		fmt.Println("install boot OS")
 	} else if !*bootPtr && *installPtr && !*updatePtr {
-		install()
+		installOperation()
 	} else if !*bootPtr && !*installPtr && *updatePtr {
 		update()
 	}
