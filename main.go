@@ -14,16 +14,12 @@ import (
 func installOperation() {
 	target := "/dev/sda"
 	fmt.Printf("installing Arch Linux on %v...\n", target)
-	ok, err := install.CheckCapacity(target)
+	err := install.CheckCapacity(target)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if ok {
-		fmt.Printf("there is enough space on %v\n", target)
-	}
-	// 1. Use lsblk -J to check that the target has at least 10gb
 	// 2. Warn the user that you are going to wipe the target (or call them chicken.)
 	// 3. determine if uefi or mbr machine with dmesg (dmesg | grep EFI >/dev/null)
 	// TODO it would be nice to keep this setting - but perhaps we can just check whether either mbr or uefi packages are present and figure things out that way.

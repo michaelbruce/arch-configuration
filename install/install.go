@@ -17,7 +17,7 @@ type blockInfo struct {
 	Size string `json:"size"`
 }
 
-func CheckCapacity(name string) (bool, error) {
+func CheckCapacity(name string) error {
 	cmd := exec.Command("lsblk", "-J")
 
 	out, err := cmd.Output()
@@ -35,21 +35,21 @@ func CheckCapacity(name string) (bool, error) {
 	}
 
 	for _, bi := range response.BlockDevices {
-		fmt.Println(bi.Name, bi.Size)
+		fmt.Println("size is", bi.Size)
 		if "/dev/"+bi.Name == name {
 			size, err := strconv.ParseFloat(bi.Size[:len(bi.Size)-1], 64)
 
 			if err != nil {
-				return false, err
+				return err
 			}
 
 			if size > 10 {
-				return true, nil
+				return nil
 			} else {
-				return false, fmt.Errorf("not enough space on device %v\n", name)
+				return fmt.Errorf("not enough space on device %v\n", name)
 			}
 		}
 	}
 
-	return false, fmt.Errorf("could not find block device %v\n", name)
+	return fmt.Errorf("could not find block device %v\n", name)
 }
