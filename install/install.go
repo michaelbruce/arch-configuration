@@ -14,7 +14,7 @@ type blockResponse struct {
 
 type blockInfo struct {
 	Name string `json:"name"`
-	Size string `json:"name"`
+	Size string `json:"size"`
 }
 
 func CheckCapacity(name string) (bool, error) {
