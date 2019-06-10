@@ -103,5 +103,7 @@
   {"name": "efivar"},
   {"name": "efibootmgr"},
   {"name": "openbox"},
+  {"name": "archiso", "comment": "for creating live arch images"},
+  {"name": "devtools", "comment": "for creating live arch images and arch packages"},
   {"name": "tmux"}
 ]
