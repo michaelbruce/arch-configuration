@@ -66,6 +66,7 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
   case)
 - Bluetooth requires that AutoEnable=true be set under [Policy] in
   /etc/bluetooth/main.conf to power on at boot.
+- should you be using xf86-video-intel-sna/uxa instead of default?
 
 ## OLD README CONTENT (come back to this)
 
