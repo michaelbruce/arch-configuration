@@ -64,6 +64,8 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
 - full disk encryption (LUKS)
 - -update won't work if pactree isn't present (install pacman-contrib in this
   case)
+- Bluetooth requires that AutoEnable=true be set under [Policy] in
+  /etc/bluetooth/main.conf to power on at boot.
 
 ## OLD README CONTENT (come back to this)
 
