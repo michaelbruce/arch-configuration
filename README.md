@@ -62,6 +62,8 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
 - wkhtmltopdf-static
 - iptables
 - full disk encryption (LUKS)
+- -update won't work if pactree isn't present (install pacman-contrib in this
+  case)
 
 ## OLD README CONTENT (come back to this)
 
