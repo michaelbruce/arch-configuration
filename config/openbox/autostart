@@ -16,4 +16,6 @@
 #
 #xfce-mcs-manager &
 
+feh --bg-fill ~/.config/openbox/wallpaper.jpg
+
 compton -b
