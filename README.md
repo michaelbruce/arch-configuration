@@ -38,6 +38,10 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
   - [x] include a post install collection of steps that can be rerun to keep
     packages up to date/install clean etc
 
+# Design Decisions
+
+- UEFI is assumed as chipsets with BIOS are being phased out.
+
 # TODO
 
 - gimp settings are not saved currently (I don't do any configuration)
