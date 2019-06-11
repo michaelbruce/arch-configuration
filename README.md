@@ -44,6 +44,7 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
 
 # TODO
 
+- installing AUR packages can be done with git/makepkg/pacman -U (updates with pull potentially)
 - gimp settings are not saved currently (I don't do any configuration)
 - thunar settings not saved
 - sudo cp $(which vim) /usr/local/bin/vi
