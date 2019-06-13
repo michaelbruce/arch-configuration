@@ -107,7 +107,8 @@ func (ps Packages) Dependencies() Packages {
 	var dependencies Packages
 	var packageNames []string
 
-	for _, p := range ps {
+	for i, p := range ps {
+		fmt.Printf("\rFinding dependencies (%d/%d)", i+1, len(ps))
 		packageNames = strings.Split(pactree("-slu", p.Name), "\n")
 		packageNames = packageNames[:len(packageNames)-1]
 
@@ -115,6 +116,8 @@ func (ps Packages) Dependencies() Packages {
 			dependencies = append(dependencies, Package{d})
 		}
 	}
+
+	fmt.Println()
 
 	return dependencies.uniq()
 }
