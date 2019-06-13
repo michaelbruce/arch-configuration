@@ -90,6 +90,7 @@
   {"name": "s-nail"},
   {"name": "systemd-sysvcompat"},
   {"name": "usbutils"},
+  {"name": "parted"},
   {"name": "xfsprogs"},
   {"name": "lvm2"},
   {"name": "file"},
