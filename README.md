@@ -61,6 +61,7 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
     - zoom
     - ttf-ms-fonts
 - with thunar/pavucontrol etc should you just use a window manager?
+- open pdfs in firefox (save to user.js)
 - steam?
 - efibootmgr/efivar for UEFI machines
 - font-manager
