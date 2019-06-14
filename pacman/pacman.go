@@ -12,6 +12,7 @@ import (
 
 type Package struct {
 	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 type Packages []Package
@@ -77,7 +78,7 @@ func InstalledPackages() Packages {
 
 	for _, pline := range packagesByLine {
 		fields := strings.Fields(pline)
-		packages = append(packages, Package{fields[0]})
+		packages = append(packages, Package{fields[0], ""})
 	}
 
 	return packages
@@ -118,7 +119,7 @@ func (ps Packages) Dependencies() Packages {
 			packageNames = packageNames[1 : len(packageNames)-1]
 
 			for _, d := range packageNames {
-				depsChan <- Package{d}
+				depsChan <- Package{d, ""}
 			}
 		}(p.Name)
 	}

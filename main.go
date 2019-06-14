@@ -39,24 +39,8 @@ func installOperation(target string) {
 	// 8. download tools.. setup for root?
 }
 
-func update() {
+func update(packages pacman.Packages) {
 	fmt.Println("updating system configuration...")
-
-	var packages []pacman.Package
-
-	pfile, err := ioutil.ReadFile("packages.json")
-
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	err = json.Unmarshal(pfile, &packages)
-
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
 
 	if !pacman.Exists() {
 		os.Exit(1)
@@ -71,6 +55,24 @@ func update() {
 	pacman.Update(packages)
 }
 
+func readPackagesFile() pacman.Packages {
+	var packages []pacman.Package
+
+	pfile, err := ioutil.ReadFile("packages.json")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	if err = json.Unmarshal(pfile, &packages); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	return packages
+}
+
 func main() {
 	bootPtr := flag.Bool("boot", false, "setup live OS on target volume")
 	installPtr := flag.Bool("install", false, "setup permanent OS on target volume")
@@ -78,8 +80,10 @@ func main() {
 
 	flag.Parse()
 
+	packages := readPackagesFile()
+
 	if *bootPtr && !*installPtr && !*updatePtr {
-		boot.Setup()
+		boot.Setup(packages)
 		// TODO afterwards dd to disk?
 	} else if !*bootPtr && *installPtr && !*updatePtr {
 		if args := flag.Args(); len(args) == 0 {
@@ -88,7 +92,7 @@ func main() {
 		}
 		installOperation(flag.Args()[0])
 	} else if !*bootPtr && !*installPtr && *updatePtr {
-		update()
+		update(packages)
 	}
 
 }

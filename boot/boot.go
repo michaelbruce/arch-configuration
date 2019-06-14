@@ -6,12 +6,28 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"sysconf/pacman"
 )
 
-func Setup() {
+func Setup(packages pacman.Packages) {
 	fmt.Println("create boot image")
+
+	var bootPackages pacman.Packages
+	for _, p := range packages {
+		if p.Type == "boot" {
+			bootPackages = append(bootPackages, p)
+		}
+	}
+
 	dir := config()
-	defer os.RemoveAll(dir)
+	err := appendBootPackages(dir, bootPackages)
+
+	if err != nil {
+		fmt.Println("failed to append boot packages: ", err)
+		os.Exit(1)
+	}
+
+	// defer os.RemoveAll(dir)
 }
 
 // copies across the release engineering config
@@ -39,4 +55,24 @@ func config() string {
 	}
 
 	return dir
+}
+
+// The packages.x86_64 file in the archiso defines which packages are installed
+// on the live system. This function appends a few helpful extras.
+func appendBootPackages(dir string, packages pacman.Packages) error {
+	f, err := os.OpenFile(dir+"/packages.x86_64", os.O_APPEND|os.O_WRONLY, 0600)
+
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	for _, p := range packages {
+		if _, err = f.WriteString(p.Name + "\n"); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
