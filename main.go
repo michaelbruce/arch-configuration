@@ -7,12 +7,12 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"sysconf/boot"
 	"sysconf/install"
 	"sysconf/pacman"
 )
 
-func installOperation() {
-	target := "/dev/sda"
+func installOperation(target string) {
 	fmt.Printf("installing Arch Linux on %v...\n", target)
 	err := install.CheckCapacity(target)
 
@@ -20,14 +20,22 @@ func installOperation() {
 		log.Fatal(err)
 	}
 
-	// 2. Warn the user that you are going to wipe the target (or call them chicken.)
-	// 3. determine if uefi or mbr machine with dmesg (dmesg | grep EFI >/dev/null)
-	// TODO it would be nice to keep this setting - but perhaps we can just check whether either mbr or uefi packages are present and figure things out that way.
+	err = install.CheckUEFI()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// 4. check you are root/have the correct permissions
+
 	// 5. setup the target disk reformat/create partitions
+
 	// TODO: should I create swap partition or swap file (how do I make a swap file permanent?)
+
 	// 6. include pacman with pacstrap
+
 	// 7. create file system table
+
 	// 8. download tools.. setup for root?
 }
 
@@ -73,7 +81,11 @@ func main() {
 	if *bootPtr && !*installPtr && !*updatePtr {
 		fmt.Println("install boot OS")
 	} else if !*bootPtr && *installPtr && !*updatePtr {
-		installOperation()
+		if args := flag.Args(); len(args) == 0 {
+			fmt.Println("install requires a target e.g sysconf -install /dev/sdx")
+			os.Exit(1)
+		}
+		installOperation(flag.Args()[0])
 	} else if !*bootPtr && !*installPtr && *updatePtr {
 		update()
 	}

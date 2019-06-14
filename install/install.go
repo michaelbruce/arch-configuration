@@ -6,6 +6,7 @@ import (
 	"log"
 	"os/exec"
 	"strconv"
+	"strings"
 )
 
 type blockResponse struct {
@@ -17,6 +18,7 @@ type blockInfo struct {
 	Size string `json:"size"`
 }
 
+// Ensure the target volume is big enough to comfortably contain Arch GNU/Linux
 func CheckCapacity(name string) error {
 	cmd := exec.Command("lsblk", "-J")
 
@@ -52,4 +54,26 @@ func CheckCapacity(name string) error {
 	}
 
 	return fmt.Errorf("could not find block device %v\n", name)
+}
+
+// Ensure the target machine has a UEFI
+func CheckUEFI() error {
+	cmd := exec.Command("dmesg")
+
+	out, err := cmd.Output()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	kernelRingBuffer := strings.Split(string(out),"\n")
+	kernelRingBuffer = kernelRingBuffer[:len(kernelRingBuffer)-1]
+
+	for _, line := range kernelRingBuffer {
+		if strings.Contains(line, "UEFI") {
+			return nil
+		}
+	}
+
+	return fmt.Errorf("no entry in the kernel ring buffer refers to UEFI")
 }
