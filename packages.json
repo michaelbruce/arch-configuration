@@ -21,6 +21,7 @@
   {"name": "jdk8-openjdk"},
   {"name": "ttf-inconsolata"},
   {"name": "ttf-ubuntu-font-family"},
+  {"name": "wqy-microhei", "comment": "chinese font"},
   {"name": "ntp"},
   {"name": "ruby"},
   {"name": "xorg-server"},
@@ -73,6 +74,7 @@
   {"name": "vlc"},
   {"name": "pacman-contrib"},
   {"name": "slock"},
+  {"name": "youtube-dl"},
   {"name": "audacity"},
   {"name": "pavucontrol"},
   {"name": "automake"},
@@ -99,6 +101,7 @@
   {"name": "jfsutils"},
   {"name": "licenses"},
   {"name": "logrotate"},
+  {"name": "tigervnc"},
   {"name": "bluez"},
   {"name": "bluez-libs"},
   {"name": "efivar"},
@@ -106,5 +109,6 @@
   {"name": "openbox"},
   {"name": "archiso", "comment": "for creating live arch images"},
   {"name": "devtools", "comment": "for creating live arch images and arch packages"},
+  {"name": "gdmap", "comment": "disk usage mapping utility"},
   {"name": "tmux"}
 ]
