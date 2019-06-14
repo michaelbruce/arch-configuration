@@ -79,7 +79,8 @@ func main() {
 	flag.Parse()
 
 	if *bootPtr && !*installPtr && !*updatePtr {
-		fmt.Println("install boot OS")
+		boot.Setup()
+		// TODO afterwards dd to disk?
 	} else if !*bootPtr && *installPtr && !*updatePtr {
 		if args := flag.Args(); len(args) == 0 {
 			fmt.Println("install requires a target e.g sysconf -install /dev/sdx")
