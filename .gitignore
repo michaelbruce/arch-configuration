@@ -14,3 +14,4 @@ config/zoomus.conf
 config/gtk-2.0/gtkfilechooser.ini
 .idea
 sysconf
+*.iso
