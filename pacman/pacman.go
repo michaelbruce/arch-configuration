@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"sync"
 )
 
 type Package struct {
@@ -102,22 +103,34 @@ func (ps Packages) uniq() Packages {
 // TODO fails when querying for a package that does not exist
 // TODO does not support groups e.g "xorg" must use packages e.g "xorg-server"
 // TODO could be querying local db if package exists
-// TODO could be querying concurrently
 func (ps Packages) Dependencies() Packages {
+	depsChan := make(chan Package)
 	var dependencies Packages
-	var packageNames []string
 
-	for i, p := range ps {
-		fmt.Printf("\rFinding dependencies (%d/%d)", i+1, len(ps))
-		packageNames = strings.Split(pactree("-slu", p.Name), "\n")
-		packageNames = packageNames[:len(packageNames)-1]
+	var wg sync.WaitGroup
 
-		for _, d := range packageNames {
-			dependencies = append(dependencies, Package{d})
-		}
+	wg.Add(len(ps))
+
+	for _, p := range ps {
+		go func(name string) {
+			defer wg.Done()
+			packageNames := strings.Split(pactree("-slu", name), "\n")
+			packageNames = packageNames[1 : len(packageNames)-1]
+
+			for _, d := range packageNames {
+				depsChan <- Package{d}
+			}
+		}(p.Name)
 	}
 
-	fmt.Println()
+	go func() {
+		for p := range depsChan {
+			dependencies = append(dependencies, p)
+		}
+	}()
+
+	wg.Wait()
+	close(depsChan)
 
 	return dependencies.uniq()
 }
@@ -191,7 +204,7 @@ func Update(requested Packages) {
 	fmt.Printf("requested packages: %v\n", requested)
 
 	var required = requested
-	required = append(required, requested.Dependencies()...)
+	required = append(required, requested.Dependencies()...).uniq()
 
 	fmt.Printf("required packages: %v\n", required)
 
