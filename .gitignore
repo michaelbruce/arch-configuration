@@ -11,5 +11,6 @@ config/eog/
 config/pavucontrol.ini
 config/pulse/
 config/zoomus.conf
+config/gtk-2.0/gtkfilechooser.ini
 .idea
 sysconf
