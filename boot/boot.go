@@ -60,7 +60,7 @@ func Setup(packages pacman.Packages) {
 	}
 
 	err = copyFiles([]copyInstruction{
-		copyInstruction{".bashrc", ".bashrc"},
+		copyInstruction{".bashrc", ".config/.bashrc"},
 		copyInstruction{".xinitrc", ".xinitrc"},
 		copyInstruction{".vimrc", ".vimrc"},
 		copyInstruction{".Xresources", ".Xresources"},
@@ -185,11 +185,23 @@ func appendSetBashInstructions(dir string) error {
 	defer f.Close()
 
 	_, err = f.WriteString("usermod -s /usr/bin/bash root\n")
+
+	if err != nil {
+		return err
+	}
+
+	_, err = f.WriteString("cp $(which vim) /usr/local/bin/vi\n")
+
+	if err != nil {
+		return err
+	}
+
+	_, err = f.WriteString("mv /root/.config/.bashrc /root/.bashrc\n")
 	return err
 }
 
 func build(dir string) {
-	cmd := exec.Command("sudo", dir+"/build.sh", "-v", "-o", ".")
+	cmd := exec.Command("sudo", dir+"/build.sh", "-v", "-o", "./")
 	stdout, _ := cmd.StdoutPipe()
 	cmd.Start()
 

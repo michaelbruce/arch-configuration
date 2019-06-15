@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/exec"
 	"sysconf/boot"
 	"sysconf/install"
 	"sysconf/pacman"
@@ -26,17 +27,75 @@ func installOperation(target string) {
 		log.Fatal(err)
 	}
 
-	// 4. check you are root/have the correct permissions
+	// setup disk table and partitions
+	out, err := exec.Command("parted", "--script",
+		target, "mklabel", "gpt",
+		"mkpart", "ESP", "fat32", "1M", "512M",
+		"set", "1", "boot", "on",
+		"mkpart", "system", "ext4", "512M", "100%").Output()
 
-	// 5. setup the target disk reformat/create partitions
+	fmt.Println(out)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-	// TODO: should I create swap partition or swap file (how do I make a swap file permanent?)
+	out, err = exec.Command("mkfs.fat", "-F32", target+"1").Output()
 
-	// 6. include pacman with pacstrap
+	fmt.Println(out)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-	// 7. create file system table
+	out, err = exec.Command("mkfs.ext4", "-F", target+"2").Output()
 
-	// 8. download tools.. setup for root?
+	fmt.Println(out)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	out, err = exec.Command("mount", target+"2", "/mnt").Output()
+
+	fmt.Println(out)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	if err = os.Mkdir("/mnt/boot", 0755); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	out, err = exec.Command("mount", target+"1", "/mnt/boot").Output()
+
+	fmt.Println(out)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	// install pacman, the package manager
+	out, err = exec.Command("pacstrap", "-i", "/mnt", "base", "base-devel", "--noconfirm").Output()
+
+	fmt.Println(out)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	// create file system table
+	out, err = exec.Command("genfstab", "-U", "/mnt", ">", "/mnt/etc/fstab").Output()
+
+	fmt.Println(out)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	fmt.Println("base installation complete, chroot into the system and run ./sysconf -update")
 }
 
 func update(packages pacman.Packages) {
@@ -84,7 +143,7 @@ func main() {
 
 	if *bootPtr && !*installPtr && !*updatePtr {
 		boot.Setup(packages)
-		// TODO afterwards dd to disk?
+		fmt.Println("when ready run: sudo dd if=archlinux-yyyy.mm.dd-x86_64.iso of=/dev/sdx status=progress")
 	} else if !*bootPtr && *installPtr && !*updatePtr {
 		if args := flag.Args(); len(args) == 0 {
 			fmt.Println("install requires a target e.g sysconf -install /dev/sdx")
