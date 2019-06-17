@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+mv -f ~/.config /tmp/config.orig
+ln -sfnv $PWD/config ~/.config
+mv -f ~/.mozilla /tmp/mozilla.orig
+ln -sfnv $PWD/config/mozilla ~/.mozilla
+
