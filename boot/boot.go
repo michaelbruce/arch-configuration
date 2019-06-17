@@ -55,7 +55,7 @@ func Setup(packages pacman.Packages) {
 		dir+"/airootfs/root/.config/openbox").Output()
 
 	if err != nil {
-		fmt.Println("could not copy .mozilla: ", err)
+		fmt.Println("could not copy .config/openbox: ", err)
 		os.Exit(1)
 	}
 
@@ -65,7 +65,7 @@ func Setup(packages pacman.Packages) {
 		dir+"/airootfs/root/.mozilla").Output()
 
 	if err != nil {
-		fmt.Println("could not copy .config/openbox: ", err)
+		fmt.Println("could not copy .mozilla: ", err)
 		os.Exit(1)
 	}
 
