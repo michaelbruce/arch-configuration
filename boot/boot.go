@@ -60,7 +60,7 @@ func Setup(packages pacman.Packages) {
 	}
 
 	_, err = exec.Command("cp",
-		"-r",
+		"-rL",
 		usr.HomeDir+"/.mozilla",
 		dir+"/airootfs/root/.mozilla").Output()
 
