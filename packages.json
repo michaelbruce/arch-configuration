@@ -110,6 +110,7 @@
   {"name": "xorg-server", "type": "boot"},
   {"name": "xorg-xinit", "type": "boot"},
   {"name": "xorg-xkill", "type": "boot"},
+  {"name": "xorg-xset", "type": "boot", "comment": "used to set the keyboard refresh rate"},
   {"name": "openbox", "type": "boot"},
   {"name": "net-tools", "type": "boot"},
   {"name": "htop", "type": "boot"},
