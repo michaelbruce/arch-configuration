@@ -37,7 +37,7 @@ func Setup(packages pacman.Packages) {
 		os.Exit(1)
 	}
 
-	_, err = exec.Command("cp", "-r", usr.HomeDir+"/.vim", dir+"/airootfs/root/.vim").Output()
+	_, err = exec.Command("cp", "-rL", usr.HomeDir+"/.vim", dir+"/airootfs/root/.vim").Output()
 
 	if err != nil {
 		fmt.Println("could not copy .vim: ", err)
