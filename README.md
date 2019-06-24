@@ -44,6 +44,7 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
 
 # TODO
 
+- set localtime to London (causes all kinds of bad connection issues) - ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
 - installing AUR packages can be done with git/makepkg/pacman -U (updates with pull potentially)
 - gimp settings are not saved currently (I don't do any configuration)
 - thunar settings not saved
