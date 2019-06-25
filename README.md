@@ -77,6 +77,16 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
   case)
 - Bluetooth requires that AutoEnable=true be set under [Policy] in
   /etc/bluetooth/main.conf to power on at boot.
+- `useradd -m -G wheel,docker -s /bin/bash theuser`
+- vim as vi
+- toolkit.
+- NO LOCALE
+- NO TIMESET - very important for JWT token auth - causes problems with aws cli etc
+  `ln -s /usr/share/zoneinfo/Europe/London /etc/localtime`
+- genfstab after mounting
+- intel-ucode required to boot on XPS 13 AFAIK - you can use efibootmgr direct etc
+- mkinitcpio -p linux # generate imgs to boot
+
 
 ## OLD README CONTENT (come back to this)
 
