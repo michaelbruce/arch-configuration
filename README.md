@@ -7,6 +7,9 @@ A utility for installing and configuring Arch Linux
 ## Operations
 
 ### Boot
+
+*N.B to boot, ensure you disable AHCI (sata option) and Secure Boot from your BIOS menu*
+
 Preparing a live USB Arch system, including an X environment and sysconf.  
 Simply invoke the command:
 
