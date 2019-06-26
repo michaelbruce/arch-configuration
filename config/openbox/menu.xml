@@ -85,6 +85,14 @@
         </startupnotify>
       </action>
     </item>
+    <item label="Keybase">
+      <action name="Execute">
+        <command>keybase-gui</command>
+        <startupnotify>
+          <enabled>yes</enabled>
+        </startupnotify>
+      </action>
+    </item>
     <item label="TigerVNC Client">
       <action name="Execute">
         <command>vncviewer</command>
