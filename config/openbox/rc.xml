@@ -249,10 +249,27 @@
         <command>xterm</command>
       </action>
     </keybind>
+    <keybind key="A-S-X">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>12</x>
+        <y>12</y>
+        <width>44%</width>
+        <height>98%</height>
+      </action>
+    </keybind>
     <keybind key="A-S-C">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>-12</x>
+        <y>12</y>
+        <width>54%</width>
+        <height>98%</height>
+      </action>
+    </keybind>
+    <keybind key="A-space">
       <action name="Execute">
-        <command>obxprop &gt; $HOME/the_file</command>
-        <!-- <command>code</command> -->
+        <command>rofi -show run</command>
       </action>
     </keybind>
     <keybind key="A-S-B">
@@ -263,6 +280,11 @@
     <keybind key="A-S-R">
       <action name="Execute">
         <command>openbox --restart</command>
+      </action>
+    </keybind>
+    <keybind key="A-S-S">
+      <action name="Execute">
+        <command>screen-sync</command>
       </action>
     </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
