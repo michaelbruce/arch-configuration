@@ -91,6 +91,7 @@
   {"name": "logrotate"},
   {"name": "tigervnc"},
   {"name": "rofi"},
+  {"name": "protobuf"},
   {"name": "bluez"},
   {"name": "bluez-libs"},
   {"name": "efivar"},
