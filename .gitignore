@@ -66,3 +66,12 @@ config/mozilla/systemextensionsdev/
 .idea
 sysconf
 *.iso
+config/keybase/
+config/Keybase/
+config/mozilla/firefox/6m5n7ih6.default/blocklist.xml
+config/mozilla/firefox/6m5n7ih6.default/formhistory.sqlite
+config/mozilla/firefox/6m5n7ih6.default/gmp-gmpopenh264/
+config/mozilla/firefox/6m5n7ih6.default/logins.json
+config/mozilla/firefox/6m5n7ih6.default/notificationstore.json
+config/mozilla/firefox/6m5n7ih6.default/shield-recipe-client.json
+config/nvm/
