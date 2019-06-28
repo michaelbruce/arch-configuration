@@ -90,6 +90,7 @@
   {"name": "licenses"},
   {"name": "logrotate"},
   {"name": "tigervnc"},
+  {"name": "rofi"},
   {"name": "bluez"},
   {"name": "bluez-libs"},
   {"name": "efivar"},
