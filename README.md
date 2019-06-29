@@ -65,6 +65,8 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
     - lierolibre
     - zoom
     - ttf-ms-fonts
+    - pgloader
+    - mysql (preferably the client only)
 - with thunar/pavucontrol etc should you just use a window manager?
 - open pdfs in firefox (save to user.js)
 - steam?

@@ -106,6 +106,7 @@
   {"name": "bash", "type": "boot"},
   {"name": "tmux", "type": "boot"},
   {"name": "gvim", "type": "boot", "comment": "gvim has +clipboard"},
+  {"name": "emacs", "type": "boot"},
   {"name": "firefox", "type": "boot"},
   {"name": "compton", "type": "boot"},
   {"name": "git", "type": "boot"},
