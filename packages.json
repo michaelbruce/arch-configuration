@@ -35,6 +35,7 @@
   {"name": "xf86-video-intel", "comment": "for integrated intel chipsets"},
   {"name": "nvidia"},
   {"name": "cmake"},
+  {"name": "keybase-gui"},
   {"name": "make"},
   {"name": "mutt"},
   {"name": "unzip"},
