@@ -249,6 +249,11 @@
         <command>xterm</command>
       </action>
     </keybind>
+    <keybind key="A-S-P">
+      <action name="Execute">
+        <command>emacs</command>
+      </action>
+    </keybind>
     <keybind key="A-S-X">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">

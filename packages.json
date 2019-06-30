@@ -96,6 +96,7 @@
   {"name": "bluez"},
   {"name": "bluez-libs"},
   {"name": "efivar"},
+  {"name": "mesa", "comment": "provides DRI driver for 3D acceleration (instead of intel driver)"},
   {"name": "noto-fonts", "type": "boot"},
   {"name": "noto-fonts-cjk", "type": "boot"},
   {"name": "noto-fonts-extra", "type": "boot"},
