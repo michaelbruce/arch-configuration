@@ -33,6 +33,7 @@
   {"name": "xorg-xinput"},
   {"name": "xf86-video-vesa", "comment": "generic backup driver"},
   {"name": "xf86-video-intel", "comment": "for integrated intel chipsets"},
+  {"name": "bolt", "comment": "installs bolt, for configuring thunderbolt devices"},
   {"name": "nvidia"},
   {"name": "cmake"},
   {"name": "keybase-gui"},
