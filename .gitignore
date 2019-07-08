@@ -57,6 +57,8 @@ config/mozilla/firefox/6m5n7ih6.default/storage/
 config/mozilla/firefox/6m5n7ih6.default/times.json
 config/mozilla/firefox/6m5n7ih6.default/webappsstore.sqlite
 config/mozilla/firefox/6m5n7ih6.default/webappsstore.sqlite-wal
+config/mozilla/firefox/6m5n7ih6.default/cert_override.txt
+config/mozilla/firefox/6m5n7ih6.default/enumerate_devices.txt
 config/mozilla/firefox/6m5n7ih6.default/xulstore.json
 config/mozilla/firefox/6m5n7ih6.default/weave/
 config/mozilla/firefox/Crash Reports/
