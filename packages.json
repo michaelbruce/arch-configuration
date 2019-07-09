@@ -12,6 +12,7 @@
   {"name": "docker"},
   {"name": "docker-compose"},
   {"name": "feh"},
+  {"name": "acpi"},
   {"name": "rsync"},
   {"name": "mercurial"},
   {"name": "wget"},
