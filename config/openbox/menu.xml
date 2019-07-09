@@ -93,6 +93,14 @@
         </startupnotify>
       </action>
     </item>
+    <item label="Telegram">
+      <action name="Execute">
+        <command>telegram-desktop</command>
+        <startupnotify>
+          <enabled>yes</enabled>
+        </startupnotify>
+      </action>
+    </item>
     <item label="TigerVNC Client">
       <action name="Execute">
         <command>vncviewer</command>
