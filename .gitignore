@@ -10,6 +10,7 @@ config/dconf/
 config/eog/
 config/pavucontrol.ini
 config/pulse/
+config/nvim/
 config/zoomus.conf
 config/gtk-2.0/gtkfilechooser.ini
 config/mozilla/firefox/6m5n7ih6.default/.parentlock
