@@ -37,6 +37,7 @@
   {"name": "bolt", "comment": "installs bolt, for configuring thunderbolt devices"},
   {"name": "nvidia"},
   {"name": "cmake"},
+  {"name": "graphviz"},
   {"name": "keybase-gui"},
   {"name": "make"},
   {"name": "mutt"},
