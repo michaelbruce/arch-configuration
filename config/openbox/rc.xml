@@ -249,6 +249,11 @@
         <command>xterm</command>
       </action>
     </keybind>
+    <keybind key="A-S-A">
+      <action name="Execute">
+        <command>pavucontrol</command>
+      </action>
+    </keybind>
     <keybind key="A-S-P">
       <action name="Execute">
         <command>emacs</command>

@@ -47,6 +47,8 @@ Where /dev/sdy is a storage volume (e.g an SSD) that you want to reformat and in
 
 # TODO
 
+- auto yes for conflicts (or interactive choice...)
+- packr packages.json into binary
 - set localtime to London (causes all kinds of bad connection issues) - ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
 - sync time - sudo systemctl enable systemd-timesyncd
 - installing AUR packages can be done with git/makepkg/pacman -U (updates with pull potentially)
