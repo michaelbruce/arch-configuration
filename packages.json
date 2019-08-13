@@ -85,6 +85,7 @@
   {"name": "systemd-sysvcompat"},
   {"name": "usbutils"},
   {"name": "parted"},
+  {"name": "cups", "comment": "for working with printers"},
   {"name": "xfsprogs"},
   {"name": "lvm2"},
   {"name": "file"},
