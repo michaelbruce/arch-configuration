@@ -3,6 +3,7 @@
   {"name": "tree"},
   {"name": "go"},
   {"name": "clojure"},
+  {"name": "python-neovim", "comment": "used to connect fireplace"},
   {"name": "git-crypt"},
   {"name": "tig"},
   {"name": "pacgraph"},
