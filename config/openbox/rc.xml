@@ -105,27 +105,6 @@
   </margins>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <!-- Keybindings for desktop switching -->
-    <keybind key="A-S-A">
-      <action name="UnmaximizeFull"/>
-      <action name="MaximizeVert"/>
-      <action name="MoveResizeTo">
-        <width>40%</width>
-      </action>
-      <action name="MoveToEdge">
-        <direction>west</direction>
-      </action>
-    </keybind>
-    <keybind key="A-S-D">
-      <action name="UnmaximizeFull"/>
-      <action name="MaximizeVert"/>
-      <action name="MoveResizeTo">
-        <width>60%</width>
-      </action>
-      <action name="MoveToEdge">
-        <direction>east</direction>
-      </action>
-    </keybind>
     <!-- <keybind key="A-Return"> -->
     <!--   <action name="ToggleMaximize"/> -->
     <!-- </keybind> -->
@@ -160,10 +139,7 @@
       </action>
     </keybind>
     <keybind key="S-A-Up">
-      <action name="SendToDesktop">
-        <to>up</to>
-        <wrap>no</wrap>
-      </action>
+      <action name="ToggleAlwaysOnTop"/>
     </keybind>
     <keybind key="S-A-Down">
       <action name="SendToDesktop">
